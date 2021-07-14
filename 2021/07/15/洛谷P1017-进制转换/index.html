@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      783 字
+      782 字
     </span>
   
 
@@ -243,8 +243,8 @@
             <h1 style="display: none">洛谷P1017-进制转换</h1>
             
             <div class="markdown-body">
-              <p>想试着在高三毕业后的漫长暑假里恢复当年作为Oier的实力，结果做了好久才做出这么一道普及/提高-的题……我啥时候堕落成这个样子了艹</p>
-<h3 id="题意概况"><a href="#题意概况" class="headerlink" title="题意概况"></a>题意概况</h3><p>给定一个十进制数<strong>n</strong>，将其转化为<strong>r</strong>进制数。其中<strong>r</strong>为负数。若<strong>r</strong>&gt;10，则按照十六进制的转化规则表示数字。例如，将15转化为-2进制，则得到的数为：110001。</p>
+              <p>想试着在高三毕业后的漫长暑假里恢复当年作为OIer的实力，结果做了好久才做出这么一道普及/提高-的题……我啥时候堕落成这个样子了艹</p>
+<h3 id="题意概况"><a href="#题意概况" class="headerlink" title="题意概况"></a>题意概况</h3><p>给定一个十进制数<strong>n</strong>，将其转化为<strong>r</strong>进制数。其中<strong>r</strong>为负数。若<strong>r</strong>≤-10，则按照十六进制的转化规则表示数字。例如，将15转化为-2进制，则得到的数为：110001。</p>
 <h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>先考虑<strong>r</strong>为正数的情景：分析十进制数本身，我们如果要将十进制数转化为十进制数，则可以对原数不断除以10，保存其余数并倒序输出以得到结果。拓展一下，不难发现，对于任意正进制<strong>r</strong>，我们都可以使得原数不断除以r，保存余数倒序输出来获取转化后的数。</p>
 <p>那么负进制呢？首先需要知道的是，<strong>假设有两个异号数A和B，则A%B的结果为abs(A)%abs(B)的相反数</strong>。负进制数进行相同的操作，可以发现余数有时会变成负数，而显然我们不能在某个数位上添加一个负数。因此，需要对负数进行处理。</p>
 <p>已知：<strong>被除数÷除数=商…余数</strong>，通过简单的数学变换，我们可以得到：<strong>商*除数+余数=被除数</strong>。此时余数和除数均为负数。那么此时，为了让余数变为正数，我们可以让商增加1，即增加一份除数，再使得余数的值变为其本身减去除数。这样做可以使得我们得到的新式与原式等同，而由于<strong>余数必定小于除数，因而余数-除数一定是正数</strong>。操作方式为：</p>
@@ -296,12 +296,6 @@
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2021/07/09/hello-world/">
-                        <span class="hidden-mobile">Hello World</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
