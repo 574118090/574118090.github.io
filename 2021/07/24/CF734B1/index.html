@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="想试着在高三毕业后的漫长暑假里恢复当年作为OIer的实力，结果做了好久才做出这么一道普及/提高-的题……我啥时候堕落成这个样子了艹">
+  <meta name="description" content="事实上比赛的时候我连B2都没做出来，一直卡超时。我已经不是当年的我了，现在的我只是一条没什么用的咸鱼。">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>洛谷P1017-进制转换 - Hexo</title>
+  <title>CF734B1-Wonderful Coloring - 1 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="洛谷P1017-进制转换">
+            <span class="h2" id="subtitle" title="CF734B1-Wonderful Coloring - 1">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-15 02:03" pubdate>
-        2021年7月15日 凌晨
+      <time datetime="2021-07-24 03:02" pubdate>
+        2021年7月24日 凌晨
       </time>
     </span>
   
@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      782 字
+      378 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      5
        分钟
     </span>
   
@@ -240,22 +240,15 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">洛谷P1017-进制转换</h1>
+            <h1 style="display: none">CF734B1-Wonderful Coloring - 1</h1>
             
             <div class="markdown-body">
-              <p>想试着在高三毕业后的漫长暑假里恢复当年作为OIer的实力，结果做了好久才做出这么一道普及/提高-的题……我啥时候堕落成这个样子了艹</p>
+              <p>事实上比赛的时候我连B2都没做出来，一直卡超时。我已经不是当年的我了，现在的我只是一条没什么用的咸鱼。</p>
 <span id="more"></span>
 
-<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定一个十进制数<strong>n</strong>，将其转化为<strong>r</strong>进制数。其中<strong>r</strong>为负数。若<strong>r</strong>≤-10，则按照十六进制的转化规则表示数字。例如，将15转化为-2进制，则得到的数为：110001。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>先考虑<strong>r</strong>为正数的情景：分析十进制数本身，我们如果要将十进制数转化为十进制数，则可以对原数不断除以10，保存其余数并倒序输出以得到结果。拓展一下，不难发现，对于任意正进制<strong>r</strong>，我们都可以使得原数不断除以r，保存余数倒序输出来获取转化后的数。</p>
-<p>那么负进制呢？首先需要知道的是，<strong>假设有两个异号数A和B，则A%B的结果为abs(A)%abs(B)的相反数</strong>。负进制数进行相同的操作，可以发现余数有时会变成负数，而显然我们不能在某个数位上添加一个负数。因此，需要对负数进行处理。</p>
-<p>已知：<strong>被除数÷除数=商…余数</strong>，通过简单的数学变换，我们可以得到：<strong>商*除数+余数=被除数</strong>。此时余数和除数均为负数。那么此时，为了让余数变为正数，我们可以让商增加1，即增加一份除数，再使得余数的值变为其本身减去除数。这样做可以使得我们得到的新式与原式等同，而由于<strong>余数必定小于除数，因而余数-除数一定是正数</strong>。操作方式为：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">余数-=除数;<br>商+=<span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
-
-<p>此外，当<strong>r</strong>&gt;10时，我们需要将每个数位上大于十的数字转化为字母A、B、C……。在这里，笔者使用了映射表的形式进行转化（别问为什么，我知道map效率很低但是我就是想用它）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">char</span>&gt; switchNum;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">30</span>; i++) &#123;<br>		switchNum[i + <span class="hljs-number">10</span>] = <span class="hljs-string">&#x27;A&#x27;</span> + i;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">register</span> <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>		f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>		_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> _ * f;<br>&#125;<span class="hljs-comment">//快速读入</span><br><span class="hljs-keyword">int</span> n, r;<br>map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">char</span>&gt; switchNum;<br><span class="hljs-keyword">int</span> pNote[<span class="hljs-number">21</span>];<span class="hljs-comment">//记录每一位上的值</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-comment">//freopen(&quot;test.txt&quot;, &quot;r&quot;, stdin);</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">30</span>; i++) &#123;<br>		switchNum[i + <span class="hljs-number">10</span>] = <span class="hljs-string">&#x27;A&#x27;</span> + i;<br>	&#125;<br>	n = <span class="hljs-built_in">read</span>(), r = <span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">int</span> saveN = n;<br>	<span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (n != <span class="hljs-number">0</span>) &#123;<br>		<span class="hljs-keyword">int</span> tempA = n % r;<br>		n /= r;<br>		<span class="hljs-keyword">if</span> (tempA &lt; <span class="hljs-number">0</span>) &#123;<br>			tempA -= r;<span class="hljs-comment">//操作余数</span><br>			n += <span class="hljs-number">1</span>;<span class="hljs-comment">//操作商</span><br>		&#125;<br>		pNote[p] = tempA;<br>		p++;<br>	&#125;<br>	cout &lt;&lt; saveN &lt;&lt; <span class="hljs-string">&quot;=&quot;</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = p - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>		<span class="hljs-keyword">if</span> (pNote[i] &lt;= <span class="hljs-number">9</span>)<br>			cout &lt;&lt; pNote[i] ;<br>		<span class="hljs-keyword">else</span><br>			cout &lt;&lt; switchNum[pNote[i]];<br>	&#125;<br>	cout &lt;&lt; <span class="hljs-string">&quot;(base&quot;</span> &lt;&lt; r &lt;&lt; <span class="hljs-string">&quot;)&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定一个字符串，为其上每个字符涂上颜色。涂色遵循以下规则：一个字母要么涂成红色要么涂成绿色，要么不涂颜色。同一个字母不能使用相同的颜色，且要求最终字符串上红色与绿色的字符数量相等。输出最多可以涂多少个绿色。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>不难想到，可以将重复出现过的字符与未重复出现过的字符分开处理。对于重复出现的字符，由于同种字母只能涂上不同种颜色或不涂颜色，即使出现再多次也只能提供一对红绿颜色。对于未重复出现的字符，我们只需将之一分为二，一半为红一半为绿即可。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; mp;<br>string tempWord;<br><span class="hljs-keyword">bool</span> finishTurn;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> t;<br>	cin &gt;&gt; t;<br>	<span class="hljs-keyword">while</span> (t--) &#123;<br>		finishTurn = <span class="hljs-number">1</span>;<br>		mp.<span class="hljs-built_in">clear</span>();<br>		cin &gt;&gt; tempWord;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; tempWord.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			mp[tempWord[i]]++;<br>			<span class="hljs-keyword">if</span> (mp[tempWord[i]] &gt; <span class="hljs-number">1</span>)<br>				finishTurn = <span class="hljs-number">0</span>;<br>		&#125;<br>		<span class="hljs-keyword">if</span> (finishTurn) &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, tempWord.<span class="hljs-built_in">size</span>() / <span class="hljs-number">2</span>);<br>			<span class="hljs-keyword">continue</span>;<br>		&#125;<br>		<span class="hljs-keyword">int</span> stringNum = tempWord.<span class="hljs-built_in">size</span>();<br>		<span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-string">&#x27;a&#x27;</span>; i &lt;= <span class="hljs-string">&#x27;z&#x27;</span>; i++) &#123;<br>			<span class="hljs-keyword">if</span> (mp[i] &gt; <span class="hljs-number">1</span>) &#123;<br>				stringNum -= mp[i];<br>				ans += <span class="hljs-number">1</span>;<br>			&#125;<br>		&#125;<br>		cout &lt;&lt; ans + (stringNum / <span class="hljs-number">2</span>) &lt;&lt; endl;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
             </div>
@@ -276,9 +269,7 @@
                     
                       <a class="hover-with-bg" href="/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/">恢复OI实力</a>
                     
-                      <a class="hover-with-bg" href="/tags/NOIP%E7%9C%9F%E9%A2%98/">NOIP真题</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
+                      <a class="hover-with-bg" href="/tags/CodeForces/">CodeForces</a>
                     
                   </div>
                 
@@ -295,15 +286,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/24/CF734A/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CF734A-Polycarp and Coins</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/07/24/CF734A/">
+                        <span class="hidden-mobile">CF734A-Polycarp and Coins</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -322,8 +313,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://example.com/2021/07/15/%E6%B4%9B%E8%B0%B7P1017-%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/';
-          this.page.identifier = '/2021/07/15/%E6%B4%9B%E8%B0%B7P1017-%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/';
+          this.page.url = 'http://example.com/2021/07/24/CF734B1/';
+          this.page.identifier = '/2021/07/24/CF734B1/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');

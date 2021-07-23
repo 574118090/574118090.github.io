@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-16T13:53:29.919Z</updated>
+  <updated>2021-07-23T19:21:12.729Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CF734B1-Wonderful Coloring - 1</title>
+    <link href="http://example.com/2021/07/24/CF734B1/"/>
+    <id>http://example.com/2021/07/24/CF734B1/</id>
+    <published>2021-07-23T19:02:22.000Z</published>
+    <updated>2021-07-23T19:21:12.729Z</updated>
+    
+    <content type="html"><![CDATA[<p>事实上比赛的时候我连B2都没做出来，一直卡超时。我已经不是当年的我了，现在的我只是一条没什么用的咸鱼。</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定一个字符串，为其上每个字符涂上颜色。涂色遵循以下规则：一个字母要么涂成红色要么涂成绿色，要么不涂颜色。同一个字母不能使用相同的颜色，且要求最终字符串上红色与绿色的字符数量相等。输出最多可以涂多少个绿色。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>不难想到，可以将重复出现过的字符与未重复出现过的字符分开处理。对于重复出现的字符，由于同种字母只能涂上不同种颜色或不涂颜色，即使出现再多次也只能提供一对红绿颜色。对于未重复出现的字符，我们只需将之一分为二，一半为红一半为绿即可。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; mp;<br>string tempWord;<br><span class="hljs-keyword">bool</span> finishTurn;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">int</span> t;<br>cin &gt;&gt; t;<br><span class="hljs-keyword">while</span> (t--) &#123;<br>finishTurn = <span class="hljs-number">1</span>;<br>mp.<span class="hljs-built_in">clear</span>();<br>cin &gt;&gt; tempWord;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; tempWord.<span class="hljs-built_in">size</span>(); i++) &#123;<br>mp[tempWord[i]]++;<br><span class="hljs-keyword">if</span> (mp[tempWord[i]] &gt; <span class="hljs-number">1</span>)<br>finishTurn = <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-keyword">if</span> (finishTurn) &#123;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, tempWord.<span class="hljs-built_in">size</span>() / <span class="hljs-number">2</span>);<br><span class="hljs-keyword">continue</span>;<br>&#125;<br><span class="hljs-keyword">int</span> stringNum = tempWord.<span class="hljs-built_in">size</span>();<br><span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-string">&#x27;a&#x27;</span>; i &lt;= <span class="hljs-string">&#x27;z&#x27;</span>; i++) &#123;<br><span class="hljs-keyword">if</span> (mp[i] &gt; <span class="hljs-number">1</span>) &#123;<br>stringNum -= mp[i];<br>ans += <span class="hljs-number">1</span>;<br>&#125;<br>&#125;<br>cout &lt;&lt; ans + (stringNum / <span class="hljs-number">2</span>) &lt;&lt; endl;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;事实上比赛的时候我连B2都没做出来，一直卡超时。我已经不是当年的我了，现在的我只是一条没什么用的咸鱼。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
+    
+    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CF734A-Polycarp and Coins</title>
+    <link href="http://example.com/2021/07/24/CF734A/"/>
+    <id>http://example.com/2021/07/24/CF734A/</id>
+    <published>2021-07-23T18:50:22.000Z</published>
+    <updated>2021-07-23T19:03:16.165Z</updated>
+    
+    <content type="html"><![CDATA[<p>打个Div3结果只做了两道半的题，我现在就是一条咸鱼&lt;。)#)))≦。</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>现有两种硬币：<strong>c1</strong>价值一块钱，<strong>c2</strong>价值两块钱，要求组合使用两种硬币购买给定价格的物品，使得使用的两种硬币数量最接近。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>简单分析，为了使硬币使用数量最接近，我们可以先同时使用两种硬币，直至剩余的价格不足以让我们同时使用两种硬币，再使用价值为1或2的硬币去补足剩余价值即可。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> c1, c2;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">int</span> t = <span class="hljs-built_in">read</span>();<br><span class="hljs-keyword">while</span> (t--) &#123;<br>n = <span class="hljs-built_in">read</span>();<br>c1 = n / <span class="hljs-number">3</span>, c2 = n / <span class="hljs-number">3</span>;<br><span class="hljs-keyword">int</span> tempNum = n % <span class="hljs-number">3</span>;<br><span class="hljs-keyword">if</span> (tempNum == <span class="hljs-number">1</span>)<br>c1++;<br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (tempNum == <span class="hljs-number">2</span>)<br>c2++;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d\n&quot;</span>, c1, c2);<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;打个Div3结果只做了两道半的题，我现在就是一条咸鱼&amp;lt;。)#)))≦。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
+    
+    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+  </entry>
   
   <entry>
     <title>洛谷P1017-进制转换</title>
