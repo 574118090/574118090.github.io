@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="找手感的入门题目~">
+  <meta name="description" content="抽象形式的搜索，菜鸡恢复OI实力才做这种题QAQ">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>洛谷P1089-津津的储蓄计划 - Hexo</title>
+  <title>计蒜客-蒜头君开公司 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="洛谷P1089-津津的储蓄计划">
+            <span class="h2" id="subtitle" title="计蒜客-蒜头君开公司">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-31 12:27" pubdate>
-        2021年7月31日 中午
+      <time datetime="2021-07-31 14:19" pubdate>
+        2021年7月31日 下午
       </time>
     </span>
   
@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      639 字
+      499 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      6
        分钟
     </span>
   
@@ -240,19 +240,17 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">洛谷P1089-津津的储蓄计划</h1>
+            <h1 style="display: none">计蒜客-蒜头君开公司</h1>
             
             <div class="markdown-body">
-              <p>找手感的入门题目~</p>
+              <p>抽象形式的搜索，菜鸡恢复OI实力才做这种题QAQ</p>
 <span id="more"></span>
 
-<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>津津的零花钱一直都是自己管理。每个月的月初妈妈给津津300元钱，津津会预算这个月的花销，并且总能做到实际花销和预算的相同。</p>
-<p>为了让津津学习如何储蓄，妈妈提出，津津可以随时把整百的钱存在她那里，到了年末她会加上%20还给津津。因此津津制定了一个储蓄计划：每个月的月初，在得到妈妈给的零花钱后，如果她预计到这个月的月末手中还会有多于100元或恰好100元，她就会把整百的钱存在妈妈那里，剩余的钱留在自己手中。</p>
-<p>例如11月初津津手中还有83元，妈妈给了津津300元。津津预计11月的花销是180元，那么她就会在妈妈那里存200元，自己留下183元。到了11月月末，津津手中会剩下3元钱。</p>
-<p>津津发现这个储蓄计划的主要风险是，存在妈妈那里的钱在年末之前不能取出。有可能在某个月的月初，津津手中的钱加上这个月妈妈给的钱，不够这个月的原定预算。如果出现这种情况，津津将不得不在这个月省吃俭用，压缩预算。</p>
-<p>现在请你根据2004年1月到12月每个月津津的预算，判断会不会出现这种情况。如果不会，计算到2004年年末，妈妈将津津平常存的钱加上20％还给津津之后，津津手中会有多少钱。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>简单模拟。一共十二个月，每个月月初给津津发300块，再用掉预算的部分，剩的钱按题目要求自己存着/交给妈妈。记得最后结果是自己的钱+妈妈的钱*1.2。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>		f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>		_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> iHave;<br><span class="hljs-keyword">int</span> inBank;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">12</span>; i++) &#123;<br>		iHave += <span class="hljs-number">300</span>;<br>		<span class="hljs-keyword">int</span> a = <span class="hljs-built_in">read</span>();<br>		iHave -= a;<br>		<span class="hljs-keyword">if</span> (iHave &gt; <span class="hljs-number">100</span>) &#123;<br>			inBank += <span class="hljs-number">100</span> * ((iHave - (iHave % <span class="hljs-number">100</span>)) / <span class="hljs-number">100</span>);<br>			iHave -= <span class="hljs-number">100</span> * ((iHave - (iHave % <span class="hljs-number">100</span>)) / <span class="hljs-number">100</span>);<br>		&#125;<br>		<span class="hljs-keyword">if</span> (iHave &lt; <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;-%d&quot;</span>, i + <span class="hljs-number">1</span>);<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		&#125;<br>		<span class="hljs-comment">//printf(&quot;Ihave:%d inBank:%d\n&quot;, iHave, inBank);</span><br>	&#125;<br>	<span class="hljs-keyword">int</span> ans = inBank * <span class="hljs-number">1.2</span> + iHave;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, ans);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>2020 年，蒜头君自己开了一家拥有 <em>N</em> 个员工的大公司。每天，蒜头君都要分配 <em>N</em> 项工作给他的员工，但是，由于能力的不同，每个人对处理相同工作所需要的时间有所差异。</p>
+<p>众所周知，蒜头君是一个非常重视效率的人，他想知道该如何分配工作，才能使得完成所有工作的时间总和最小（每个员工只可以被分配到一个工作）。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>抽象搜索，我们假设开始时第<strong>i</strong>个人做第<strong>i</strong>份工，因为每个人只能做一份工，因此我们使每个人依次与其他人交换工作，并以该新状态进行下一层搜索，即可得到最终答案。</p>
+<p>关于可行性这一块儿，试想：每个人只做一份工，做工总数与人数相等，无论所有人做工顺序是什么，总能通过两两交换的形式变为编号为i的人做第i份工的状态，因此原思路可以遍历所有状态，即具有可行性与正确性。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>		f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>		_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> workTime[<span class="hljs-number">20</span>][<span class="hljs-number">20</span>];<br><span class="hljs-keyword">int</span> workNote[<span class="hljs-number">20</span>];<br><span class="hljs-keyword">int</span> ans = <span class="hljs-number">0x3f3f3f3f</span>;;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> now)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (now == n) &#123;<br>		<span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>			sum += workTime[i][workNote[i]];<br>		ans = <span class="hljs-built_in">min</span>(ans, sum);<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = now; i &lt; n; i++) &#123;<br>			<span class="hljs-built_in">swap</span>(workNote[i], workNote[now]);<br>			<span class="hljs-built_in">dfs</span>(now + <span class="hljs-number">1</span>);<br>			<span class="hljs-built_in">swap</span>(workNote[i], workNote[now]);<br>		&#125;<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	n = <span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++)<br>			workNote[i] = i, workTime[i][j] = <span class="hljs-built_in">read</span>();<br>	&#125;<br>	<span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>);<br>	cout &lt;&lt; ans &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
             </div>
@@ -273,9 +271,9 @@
                     
                       <a class="hover-with-bg" href="/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/">恢复OI实力</a>
                     
-                      <a class="hover-with-bg" href="/tags/NOIP%E7%9C%9F%E9%A2%98/">NOIP真题</a>
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95%E8%A3%B8%E9%A2%98/">算法裸题</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E6%8B%9F/">模拟</a>
+                      <a class="hover-with-bg" href="/tags/%E6%90%9C%E7%B4%A2/">搜索</a>
                     
                   </div>
                 
@@ -292,18 +290,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/31/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E8%B8%8F%E9%9D%92/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">计蒜客-踏青</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/24/CF734B1/">
-                        <span class="hidden-mobile">CF734B1-Wonderful Coloring - 1</span>
+                      <a href="/2021/07/31/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E8%B8%8F%E9%9D%92/">
+                        <span class="hidden-mobile">计蒜客-踏青</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -325,8 +317,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://example.com/2021/07/31/%E6%B4%9B%E8%B0%B7P1089-%E6%B4%A5%E6%B4%A5%E7%9A%84%E5%82%A8%E8%93%84%E8%AE%A1%E5%88%92/';
-          this.page.identifier = '/2021/07/31/%E6%B4%9B%E8%B0%B7P1089-%E6%B4%A5%E6%B4%A5%E7%9A%84%E5%82%A8%E8%93%84%E8%AE%A1%E5%88%92/';
+          this.page.url = 'http://example.com/2021/07/31/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E8%92%9C%E5%A4%B4%E5%90%9B%E5%BC%80%E5%85%AC%E5%8F%B8/';
+          this.page.identifier = '/2021/07/31/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E8%92%9C%E5%A4%B4%E5%90%9B%E5%BC%80%E5%85%AC%E5%8F%B8/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
