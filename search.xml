@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>洛谷P1089-津津的储蓄计划</title>
+      <link href="/2021/07/31/%E6%B4%9B%E8%B0%B7P1089-%E6%B4%A5%E6%B4%A5%E7%9A%84%E5%82%A8%E8%93%84%E8%AE%A1%E5%88%92/"/>
+      <url>/2021/07/31/%E6%B4%9B%E8%B0%B7P1089-%E6%B4%A5%E6%B4%A5%E7%9A%84%E5%82%A8%E8%93%84%E8%AE%A1%E5%88%92/</url>
+      
+        <content type="html"><![CDATA[<p>找手感的入门题目~</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>津津的零花钱一直都是自己管理。每个月的月初妈妈给津津300元钱，津津会预算这个月的花销，并且总能做到实际花销和预算的相同。</p><p>为了让津津学习如何储蓄，妈妈提出，津津可以随时把整百的钱存在她那里，到了年末她会加上%20还给津津。因此津津制定了一个储蓄计划：每个月的月初，在得到妈妈给的零花钱后，如果她预计到这个月的月末手中还会有多于100元或恰好100元，她就会把整百的钱存在妈妈那里，剩余的钱留在自己手中。</p><p>例如11月初津津手中还有83元，妈妈给了津津300元。津津预计11月的花销是180元，那么她就会在妈妈那里存200元，自己留下183元。到了11月月末，津津手中会剩下3元钱。</p><p>津津发现这个储蓄计划的主要风险是，存在妈妈那里的钱在年末之前不能取出。有可能在某个月的月初，津津手中的钱加上这个月妈妈给的钱，不够这个月的原定预算。如果出现这种情况，津津将不得不在这个月省吃俭用，压缩预算。</p><p>现在请你根据2004年1月到12月每个月津津的预算，判断会不会出现这种情况。如果不会，计算到2004年年末，妈妈将津津平常存的钱加上20％还给津津之后，津津手中会有多少钱。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>简单模拟。一共十二个月，每个月月初给津津发300块，再用掉预算的部分，剩的钱按题目要求自己存着/交给妈妈。记得最后结果是自己的钱+妈妈的钱*1.2。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> iHave;<br><span class="hljs-keyword">int</span> inBank;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">12</span>; i++) &#123;<br>iHave += <span class="hljs-number">300</span>;<br><span class="hljs-keyword">int</span> a = <span class="hljs-built_in">read</span>();<br>iHave -= a;<br><span class="hljs-keyword">if</span> (iHave &gt; <span class="hljs-number">100</span>) &#123;<br>inBank += <span class="hljs-number">100</span> * ((iHave - (iHave % <span class="hljs-number">100</span>)) / <span class="hljs-number">100</span>);<br>iHave -= <span class="hljs-number">100</span> * ((iHave - (iHave % <span class="hljs-number">100</span>)) / <span class="hljs-number">100</span>);<br>&#125;<br><span class="hljs-keyword">if</span> (iHave &lt; <span class="hljs-number">0</span>) &#123;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;-%d&quot;</span>, i + <span class="hljs-number">1</span>);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">//printf(&quot;Ihave:%d inBank:%d\n&quot;, iHave, inBank);</span><br>&#125;<br><span class="hljs-keyword">int</span> ans = inBank * <span class="hljs-number">1.2</span> + iHave;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, ans);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 恢复OI实力 </tag>
+            
+            <tag> NOIP真题 </tag>
+            
+            <tag> 模拟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CF734B1-Wonderful Coloring - 1</title>
       <link href="/2021/07/24/CF734B1/"/>
       <url>/2021/07/24/CF734B1/</url>
