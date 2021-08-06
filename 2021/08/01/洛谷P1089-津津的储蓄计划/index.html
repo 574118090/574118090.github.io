@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="我的dp入门题，煽情的题面+简单的思路+离谱的坑点，说的就是它=3=">
+  <meta name="description" content="找手感的入门题目~">
   <meta name="author" content="想变成一只白泽">
   <meta name="keywords" content="">
   
-  <title>洛谷P1107-雷涛的小猫 - 追梦的陈~</title>
+  <title>洛谷P1089-津津的储蓄计划 - 追梦的陈~</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="洛谷P1107-雷涛的小猫">
+            <span class="h2" id="subtitle" title="洛谷P1089-津津的储蓄计划">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-15 02:03" pubdate>
-        2021年7月15日 凌晨
+      <time datetime="2021-08-01 12:27" pubdate>
+        2021年8月1日 中午
       </time>
     </span>
   
@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      639 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      8
        分钟
     </span>
   
@@ -240,33 +240,19 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">洛谷P1107-雷涛的小猫</h1>
+            <h1 style="display: none">洛谷P1089-津津的储蓄计划</h1>
             
             <div class="markdown-body">
-              <p>我的dp入门题，煽情的题面+简单的思路+离谱的坑点，说的就是它=3=</p>
+              <p>找手感的入门题目~</p>
 <span id="more"></span>
 
-<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>雷涛同学非常的有爱心，在他的宿舍里，养着一只因为受伤被救助的小猫(当然，这样的行为是违反学生宿舍管理条例的)。在他的照顾下，小猫很快恢复了健康，并且愈发的活泼可爱了。</p>
-<p>可是有一天，雷涛下课回到寝室，却发现小猫不见了！经过一番寻找，才发现她正趴在阳台上对窗外的柿子树发呆…</p>
-<p>在北京大学的校园里，有许多柿子树，在雷涛所在的宿舍楼前，就有N棵。并且这N棵柿子树每棵的高度都是H。冬天的寒冷渐渐笼罩了大地，树上的叶子渐渐掉光了，只剩下一个个黄澄澄的柿子，看着非常喜人。而雷涛的小猫恰好非常的爱吃柿子，看着窗外树上的柿子，她十分眼馋，于是决定利用自己敏捷的跳跃能力跳到树上去吃柿子。</p>
-<p>小猫可以从宿舍的阳台上跳到窗外任意一棵柿子树的树顶。之后，她每次都可以在当前位置沿着当前所在的柿子树向下跳1单位距离。当然，小猫的能力远不止如此，她还可以在树之间跳跃。每次她都可以从当前这棵树跳到另外的任意一棵，在这个过程中，她的高度会下降<strong>Delta</strong>单位距离。每个时刻，只要她所在的位置有柿子，她就可以吃掉。整个“吃柿子行动”一直到小猫落到地面上为止。</p>
-<p>雷涛调查了所有柿子树上柿子的生长情况。他很想知道，小猫从阳台出发，最多能吃到多少柿子？他知道写一个程序可以很容易的解决这个问题，但是他现在懒于写任何代码。于是，现在你的任务就是帮助雷涛写一个这样的程序。</p>
-<p><img src="https://cdn.luogu.com.cn/upload/pic/15407.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>图为<strong>N=3,H=10,Delta=2</strong>的一个例子。小猫按照图示路线进行跳跃，可以吃到最多的8个柿子。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>简单分析，我们可以设<strong>dp[i][j]表示当小猫处于第i棵树上高度为j的位置时能取得的最大柿子数</strong>。顺着这个思路走下去，不难发现：每棵树某一特定高度上能得到的柿子数取决于其该树上上一个高度的柿子数，或上<strong>Delta</strong>个高度上在某棵树能获得的柿子数。因此我们很容易能推出转移方程：<br>$$<br>dp_{i,j}=max(dp_{i,j+1},dp_{k,j+Delta})<br>$$<br>也就可以得到：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = h; j &gt;= <span class="hljs-number">1</span>; j --) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>			<span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; n; k++) &#123;<br>				<span class="hljs-keyword">if</span> (i != k)<br>					temp =  <span class="hljs-built_in">max</span>(dp[k][j + de], dp[i][j + <span class="hljs-number">1</span>]);<br>				<span class="hljs-keyword">else</span><br>					temp = <span class="hljs-built_in">max</span>(temp, dp[i][j + <span class="hljs-number">1</span>]);<br>			&#125;<br>			dp[i][j] += temp;<br>			ans = <span class="hljs-built_in">max</span>(dp[i][j], ans);<br>			<span class="hljs-comment">//cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; j &lt;&lt; &quot; &quot; &lt;&lt; dp[i][j] &lt;&lt; endl;</span><br>		&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>时间复杂度$O(n^3)$​，显然超时。简单分析，优化掉k层循环——我们直接记录每一高度可以获取的最大柿子数，以空间换时间即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = h; j &gt;= <span class="hljs-number">1</span>; j --) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>		dp[i][j] += <span class="hljs-built_in">max</span>(dp[i][j + <span class="hljs-number">1</span>], ansBox[j + de]);<br>		ansBox[j] = <span class="hljs-built_in">max</span>(dp[i][j], ansBox[j]);<br>		<span class="hljs-comment">//cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; j &lt;&lt; &quot; &quot; &lt;&lt; dp[i][j] &lt;&lt; endl;</span><br>	&#125;<br>	<span class="hljs-comment">//cout &lt;&lt; j &lt;&lt; &quot;:&quot; &lt;&lt; ansBox[j] &lt;&lt; endl;</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>然而这道题有巨大的坑点…</strong></p>
-<p>题目描述中，每棵柿子树的高度都为h，而在给出柿子位置数据时其大小有可能超过h。而众所周知，小猫不能飞，因此我们应舍去这样的柿子，或是将循环顺序改为从下至上，以至于在递推时不会让小猫飞起来吃到天上飘浮着的果子。</p>
-<p><em>谁能想象我为这个点耗费了一个小时…</em></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span> (temp &lt;= h)dp[i][temp]++;<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 5005</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>		f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>		_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> n, h, de;<br><span class="hljs-keyword">int</span> s[maxn], ansBox[maxn];<br><span class="hljs-keyword">int</span> dp[maxn][maxn];<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	n = <span class="hljs-built_in">read</span>(), h = <span class="hljs-built_in">read</span>(), de = <span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>		s[i] = <span class="hljs-built_in">read</span>();<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; s[i]; j++) &#123;<br>			<span class="hljs-keyword">int</span> temp = <span class="hljs-built_in">read</span>();<br>			<span class="hljs-keyword">if</span> (temp &lt;= h)<span class="hljs-comment">//坑点！！</span><br>				dp[i][temp]++;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = h; j &gt;= <span class="hljs-number">1</span>; j --) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>			dp[i][j] += <span class="hljs-built_in">max</span>(dp[i][j + <span class="hljs-number">1</span>], ansBox[j + de]);<br>			ansBox[j] = <span class="hljs-built_in">max</span>(dp[i][j], ansBox[j]);<br>			<span class="hljs-comment">//cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; j &lt;&lt; &quot; &quot; &lt;&lt; dp[i][j] &lt;&lt; endl;</span><br>		&#125;<br>		<span class="hljs-comment">//cout &lt;&lt; j &lt;&lt; &quot;:&quot; &lt;&lt; ansBox[j] &lt;&lt; endl;</span><br>	&#125;<br>	cout &lt;&lt; ansBox[<span class="hljs-number">1</span>] &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>津津的零花钱一直都是自己管理。每个月的月初妈妈给津津300元钱，津津会预算这个月的花销，并且总能做到实际花销和预算的相同。</p>
+<p>为了让津津学习如何储蓄，妈妈提出，津津可以随时把整百的钱存在她那里，到了年末她会加上%20还给津津。因此津津制定了一个储蓄计划：每个月的月初，在得到妈妈给的零花钱后，如果她预计到这个月的月末手中还会有多于100元或恰好100元，她就会把整百的钱存在妈妈那里，剩余的钱留在自己手中。</p>
+<p>例如11月初津津手中还有83元，妈妈给了津津300元。津津预计11月的花销是180元，那么她就会在妈妈那里存200元，自己留下183元。到了11月月末，津津手中会剩下3元钱。</p>
+<p>津津发现这个储蓄计划的主要风险是，存在妈妈那里的钱在年末之前不能取出。有可能在某个月的月初，津津手中的钱加上这个月妈妈给的钱，不够这个月的原定预算。如果出现这种情况，津津将不得不在这个月省吃俭用，压缩预算。</p>
+<p>现在请你根据2004年1月到12月每个月津津的预算，判断会不会出现这种情况。如果不会，计算到2004年年末，妈妈将津津平常存的钱加上20％还给津津之后，津津手中会有多少钱。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>简单模拟。一共十二个月，每个月月初给津津发300块，再用掉预算的部分，剩的钱按题目要求自己存着/交给妈妈。记得最后结果是自己的钱+妈妈的钱*1.2。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>		f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>		_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> iHave;<br><span class="hljs-keyword">int</span> inBank;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">12</span>; i++) &#123;<br>		iHave += <span class="hljs-number">300</span>;<br>		<span class="hljs-keyword">int</span> a = <span class="hljs-built_in">read</span>();<br>		iHave -= a;<br>		<span class="hljs-keyword">if</span> (iHave &gt; <span class="hljs-number">100</span>) &#123;<br>			inBank += <span class="hljs-number">100</span> * ((iHave - (iHave % <span class="hljs-number">100</span>)) / <span class="hljs-number">100</span>);<br>			iHave -= <span class="hljs-number">100</span> * ((iHave - (iHave % <span class="hljs-number">100</span>)) / <span class="hljs-number">100</span>);<br>		&#125;<br>		<span class="hljs-keyword">if</span> (iHave &lt; <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;-%d&quot;</span>, i + <span class="hljs-number">1</span>);<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		&#125;<br>		<span class="hljs-comment">//printf(&quot;Ihave:%d inBank:%d\n&quot;, iHave, inBank);</span><br>	&#125;<br>	<span class="hljs-keyword">int</span> ans = inBank * <span class="hljs-number">1.2</span> + iHave;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, ans);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
             </div>
@@ -287,7 +273,9 @@
                     
                       <a class="hover-with-bg" href="/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/">恢复OI实力</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+                      <a class="hover-with-bg" href="/tags/NOIP%E7%9C%9F%E9%A2%98/">NOIP真题</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E6%8B%9F/">模拟</a>
                     
                   </div>
                 
@@ -304,15 +292,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/15/%E6%B4%9B%E8%B0%B7P1017-%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
+                      <a href="/2021/08/01/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E8%92%9C%E5%A4%B4%E5%90%9B%E7%9A%84%E6%97%85%E6%B8%B8%E8%AE%A1%E5%88%92/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">洛谷P1017-进制转换</span>
+                        <span class="hidden-mobile">计蒜客-蒜头君的旅游计划</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/07/31/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E5%85%A8%E6%8E%92%E5%88%97/">
+                        <span class="hidden-mobile">计蒜客-全排列</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -331,8 +325,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://example.com/2021/07/15/%E6%B4%9B%E8%B0%B7P1107-%E9%9B%B7%E6%B6%9B%E7%9A%84%E5%B0%8F%E7%8C%AB/';
-          this.page.identifier = '/2021/07/15/%E6%B4%9B%E8%B0%B7P1107-%E9%9B%B7%E6%B6%9B%E7%9A%84%E5%B0%8F%E7%8C%AB/';
+          this.page.url = 'http://example.com/2021/08/01/%E6%B4%9B%E8%B0%B7P1089-%E6%B4%A5%E6%B4%A5%E7%9A%84%E5%82%A8%E8%93%84%E8%AE%A1%E5%88%92/';
+          this.page.identifier = '/2021/08/01/%E6%B4%9B%E8%B0%B7P1089-%E6%B4%A5%E6%B4%A5%E7%9A%84%E5%82%A8%E8%93%84%E8%AE%A1%E5%88%92/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
