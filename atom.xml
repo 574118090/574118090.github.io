@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-08-10T04:27:33.164Z</updated>
+  <updated>2021-08-10T05:38:57.912Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CF1175B</title>
+    <link href="http://example.com/2021/08/10/CF1175B/"/>
+    <id>http://example.com/2021/08/10/CF1175B/</id>
+    <published>2021-08-10T05:18:36.000Z</published>
+    <updated>2021-08-10T05:38:57.912Z</updated>
+    
+    <content type="html"><![CDATA[<p>用到栈的模拟题~</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>有初始值a=0，进行x次操作，共有如下三种操作模式：</p><ul><li>add：使a增加1</li><li>for num：将其和与之适配的end之间所有操作循环执行num次</li><li>end：与for适配</li></ul><p>如果a的值大于$2^{32}$，输出**OVERFLOW!!!**，否则输出a。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>没啥好说的模拟-.-</p><p>坑点：for循环经过多次堆叠后每次add操作的值有可能大于longlong范围，当然也有可能多次堆叠后不进行add操作，使得堆叠的值又慢慢变小，因此我们可以利用栈存储堆叠到当前状态下需要循环的总次数，而非单次循环的次数。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> n, now;<br>stack&lt;<span class="hljs-keyword">int</span>&gt; st;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br><span class="hljs-keyword">int</span> loop = <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>);<br>cin &gt;&gt; n;<br>st.<span class="hljs-built_in">push</span>(<span class="hljs-number">1</span>);<br><span class="hljs-keyword">while</span> (n--) &#123;<br>string command;<br>cin &gt;&gt; command;<br><span class="hljs-keyword">if</span> (command == <span class="hljs-string">&quot;add&quot;</span>) &#123;<br>now += st.<span class="hljs-built_in">top</span>();<br><span class="hljs-keyword">if</span> (now &gt;= loop) &#123;<br><span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;OVERFLOW!!!&quot;</span>);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (command == <span class="hljs-string">&quot;for&quot;</span>) &#123;<br><span class="hljs-keyword">int</span> temp;<br>cin &gt;&gt; temp;<br><span class="hljs-keyword">if</span> (temp == <span class="hljs-number">0</span>)<br><span class="hljs-keyword">continue</span>;<br>st.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">min</span>(st.<span class="hljs-built_in">top</span>()*temp, loop));<br>&#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-keyword">if</span> (st.<span class="hljs-built_in">empty</span>())<br><span class="hljs-keyword">continue</span>;<br><span class="hljs-keyword">int</span> temp = st.<span class="hljs-built_in">top</span>();<br>st.<span class="hljs-built_in">pop</span>();<br>&#125;<br>&#125;<br>cout &lt;&lt; now &lt;&lt; endl;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;用到栈的模拟题~&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
+    
+    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Zero</title>
     <link href="http://example.com/2021/08/10/CF1175A/"/>
     <id>http://example.com/2021/08/10/CF1175A/</id>
     <published>2021-08-10T04:16:28.000Z</published>
-    <updated>2021-08-10T04:27:33.164Z</updated>
+    <updated>2021-08-10T04:28:47.904Z</updated>
     
     <content type="html"><![CDATA[<p>信心题=W=</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定一组数<em>n</em>、<em>k</em>，每次可进行两种操作，使n减一，或在n可以被k整除时使之除以k。求将n变为0的最小次数。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>简单贪心。为了以最快的速度将n变为k，我们可以在可以让n与k相除时使之相除，否则将n减少直到可以与k相除或n=0。同时，我们可以合并多次连续的相同操作以降低时间复杂度。这里我只合并了减法操作因为我懒。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 100000005</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> mod 2008</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> t, n, k;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>cin &gt;&gt; t;<br><span class="hljs-keyword">while</span> (t--) &#123;<br>cin &gt;&gt; n &gt;&gt; k;<br><span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (n != <span class="hljs-number">0</span>) &#123;<br><span class="hljs-keyword">if</span> (n % k == <span class="hljs-number">0</span>) &#123;<br>n /= k;<br>ans++;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-keyword">int</span> temp = n % k;<br>n -= temp;<br>ans += temp;<br>&#125;<br>&#125;<br>cout &lt;&lt; ans &lt;&lt; endl;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
@@ -32,6 +57,8 @@
     
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
+    
+    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
     
     <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
@@ -56,9 +83,9 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
-    
     <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
   </entry>
   
@@ -227,11 +254,11 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
+    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
+    
     <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
     <category term="NOIP真题" scheme="http://example.com/tags/NOIP%E7%9C%9F%E9%A2%98/"/>
-    
-    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
     
   </entry>
   
@@ -377,9 +404,9 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
-    
     <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
   </entry>
   
@@ -400,9 +427,9 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
-    
     <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
   </entry>
   
