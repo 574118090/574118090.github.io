@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="简单递归">
+  <meta name="description" content="有关数位的简单模拟题。">
   <meta name="author" content="想变成一只白泽">
   <meta name="keywords" content="">
   
-  <title>HDU2197-本源串 - 追梦的陈~</title>
+  <title>CF616A-Comparing Two Long Integers - 追梦的陈~</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="HDU2197-本源串">
+            <span class="h2" id="subtitle" title="CF616A-Comparing Two Long Integers">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-08-11 14:18" pubdate>
-        2021年8月11日 下午
+      <time datetime="2021-08-12 11:35" pubdate>
+        2021年8月12日 中午
       </time>
     </span>
   
@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      394 字
+      349 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      6
        分钟
     </span>
   
@@ -240,15 +240,15 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">HDU2197-本源串</h1>
+            <h1 style="display: none">CF616A-Comparing Two Long Integers</h1>
             
             <div class="markdown-body">
-              <p>简单递归</p>
+              <p>有关数位的简单模拟题。</p>
 <span id="more"></span>
 
-<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>由0和1组成的串中，不能表示为由几个相同的较小的串连接成的串，称为本原串，有多少个长为n（n&lt;=100000000)的本原串？<br>答案mod2008。<br>例如，<strong>100100</strong>不是本原串，因为他是由两个<strong>100</strong>组成，而<strong>1101</strong>是本原串。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>简单递归。同样先分析简单情况——当其长度为1时，仅有1和2两种情况；当其长度为2时，则有10、01两种情况。向广泛情况推断，当我们目前有长度为n的一个本原串时，假设n有约数x，该串总能被划分为x份，且其不全部相同。而其划分的每一份又可以划分为更小的数，依次递归，最后可以回到长度为1、2的情况。最后，我们减去整个数列全是1、全是0的两种情况即可。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> mod 2008</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ksm</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> res = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span> (b) &#123;<br>		<span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) &#123;<br>			res *= a;<br>			res %= mod;<br>		&#125;<br>		b &gt;&gt;= <span class="hljs-number">1</span>;<br>		a *= a;<br>		a %= mod;<br>	&#125;<br>	<span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> now)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (now == <span class="hljs-number">1</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>	<span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i * i &lt;= now; i++) &#123;<br>		<span class="hljs-keyword">if</span> (now % i == <span class="hljs-number">0</span>) &#123;<br>			sum = (sum + <span class="hljs-built_in">dfs</span>(i)) % mod;<br>			<span class="hljs-keyword">if</span> (now / i != i) &#123;<br>				sum = (sum + <span class="hljs-built_in">dfs</span>(now / i)) % mod;<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-comment">//cout &lt;&lt; now &lt;&lt; &quot; &quot; &lt;&lt; sum &lt;&lt; endl;</span><br>	<span class="hljs-keyword">return</span> (<span class="hljs-built_in">ksm</span>(<span class="hljs-number">2</span>, now) - sum - <span class="hljs-number">2</span> + mod) % mod;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> n;<br>	<span class="hljs-keyword">while</span> (cin &gt;&gt; n) &#123;<br>		<span class="hljs-comment">//cout &lt;&lt; &quot;n:&quot; &lt;&lt; n &lt;&lt; endl;</span><br>		cout &lt;&lt; <span class="hljs-built_in">dfs</span>(n) % mod &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定两个数字序列a和b，根据其大小关系输出**&gt;、＜或=**；注意，两个序列的长度不超过$10^6$。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>不怎么难的模拟题，抹除两个序列最前面0后，先比较数字序列的长度，若相等再逐位比较数字大小即可。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">char</span> a[<span class="hljs-number">1000005</span>], b[<span class="hljs-number">1000005</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">char</span> now = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">int</span> flaga = <span class="hljs-number">0</span>, flagb = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">int</span> saveZero = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (now &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; now &gt;= <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>		<span class="hljs-keyword">if</span> (now &gt; <span class="hljs-string">&#x27;9&#x27;</span> || now &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">if</span> (!saveZero) &#123;<br>			<span class="hljs-keyword">if</span> (now == <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>				now = <span class="hljs-built_in">getchar</span>();<br>			&#125; <span class="hljs-keyword">else</span> &#123;<br>				saveZero = <span class="hljs-number">1</span>;<br>				a[flaga] = now;<br>				flaga++;<br>				now = <span class="hljs-built_in">getchar</span>();<br>			&#125;<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			a[flaga] = now;<br>			flaga++;<br>			now = <span class="hljs-built_in">getchar</span>();<br>		&#125;<br>	&#125;<br>	saveZero = <span class="hljs-number">0</span>, now = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (now &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; now &gt;= <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>		<span class="hljs-keyword">if</span> (now &gt; <span class="hljs-string">&#x27;9&#x27;</span> || now &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">if</span> (!saveZero) &#123;<br>			<span class="hljs-keyword">if</span> (now == <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>				now = <span class="hljs-built_in">getchar</span>();<br>			&#125; <span class="hljs-keyword">else</span> &#123;<br>				saveZero = <span class="hljs-number">1</span>;<br>				b[flagb] = now;<br>				flagb++;<br>				now = <span class="hljs-built_in">getchar</span>();<br>			&#125;<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			b[flagb] = now;<br>			flagb++;<br>			now = <span class="hljs-built_in">getchar</span>();<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">if</span> (flaga &gt; flagb) &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;&gt;&quot;</span> &lt;&lt; endl;<br>	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (flaga &lt; flagb) &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;&lt;&quot;</span> &lt;&lt; endl;<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; flaga; i++) &#123;<br>			<span class="hljs-keyword">if</span> (a[i] &gt; b[i]) &#123;<br>				cout &lt;&lt; <span class="hljs-string">&quot;&gt;&quot;</span> &lt;&lt; endl;<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (a[i] &lt; b[i]) &#123;<br>				cout &lt;&lt; <span class="hljs-string">&quot;&lt;&quot;</span> &lt;&lt; endl;<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>			&#125;<br>		&#125;<br>		cout &lt;&lt; <span class="hljs-string">&quot;=&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
             </div>
@@ -269,7 +269,9 @@
                     
                       <a class="hover-with-bg" href="/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/">恢复OI实力</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%80%92%E5%BD%92/">递归</a>
+                      <a class="hover-with-bg" href="/tags/CodeForces/">CodeForces</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E6%8B%9F/">模拟</a>
                     
                   </div>
                 
@@ -286,9 +288,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/08/12/CF616A/">
+                      <a href="/2021/08/12/CF616B/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CF616A-Comparing Two Long Integers</span>
+                        <span class="hidden-mobile">CF616B-Comparing Two Long Integers</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -296,8 +298,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/08/10/CF1175B/">
-                        <span class="hidden-mobile">CF1175B-Catch Overflow</span>
+                      <a href="/2021/08/11/HDU2197/">
+                        <span class="hidden-mobile">HDU2197-本源串</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -319,8 +321,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://example.com/2021/08/11/HDU2197/';
-          this.page.identifier = '/2021/08/11/HDU2197/';
+          this.page.url = 'http://example.com/2021/08/12/CF616A/';
+          this.page.identifier = '/2021/08/12/CF616A/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
