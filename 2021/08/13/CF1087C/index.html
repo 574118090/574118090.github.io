@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="陈的博客">
+  <meta name="description" content="经典贪心例题🤭">
   <meta name="author" content="想变成一只白泽">
   <meta name="keywords" content="">
   
-  <title>北方工业大学新生入学指南 - 追梦的陈~</title>
+  <title>CF1087C - 追梦的陈~</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="北方工业大学新生入学指南">
+            <span class="h2" id="subtitle" title="CF1087C">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-08-12 21:59" pubdate>
-        2021年8月12日 晚上
+      <time datetime="2021-08-13 13:02" pubdate>
+        2021年8月13日 下午
       </time>
     </span>
   
@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      225 字
+      557 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      8
        分钟
     </span>
   
@@ -240,25 +240,19 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">北方工业大学新生入学指南</h1>
+            <h1 style="display: none">CF1087C</h1>
             
             <div class="markdown-body">
-              <h4 id="这里是信息学院21级计类新生群，欢迎你的加入！"><a href="#这里是信息学院21级计类新生群，欢迎你的加入！" class="headerlink" title="这里是信息学院21级计类新生群，欢迎你的加入！"></a>这里是信息学院21级计类新生群，欢迎你的加入！</h4><p><strong>在入学前，现在，你需要先做好这几件事：</strong></p>
-<ul>
-<li><p>更改群名片，格式为专业+姓名；</p>
-</li>
-<li><p>在公众号：平安毓秀 中，完成新生入学安全教育，详情请见新生入学手册；</p>
-</li>
-<li><p>如果你的身高大于188cm，且体重大于80kg，请联系一下辅导员，以妥善安排你的宿舍；</p>
-</li>
-<li><p>同时，还需要你完成一下新生情况调查：</p>
-<p>网址：<a target="_blank" rel="noopener" href="https://jinshuju.net/f/dm11g9">https://jinshuju.net/f/dm11g9</a></p>
-</li>
-<li><p>最后要记得在迎新网进行网上报道，并在企业微信中认证你的身份。</p>
-<p>网址:<a target="_blank" rel="noopener" href="http://t.cn/A6IqDwi6">http://t.cn/A6IqDwi6</a><br>用户名:14位考生号<br>密码:身份证号后六位</p>
-</li>
-</ul>
-<h4 id="这就是全部内容了，祝你覆盖在苦难似的诗化悲情而看到苦难中的种种问题，云雾皆散心中唯有明月。"><a href="#这就是全部内容了，祝你覆盖在苦难似的诗化悲情而看到苦难中的种种问题，云雾皆散心中唯有明月。" class="headerlink" title="这就是全部内容了，祝你覆盖在苦难似的诗化悲情而看到苦难中的种种问题，云雾皆散心中唯有明月。"></a>这就是全部内容了，祝你覆盖在苦难似的诗化悲情而看到苦难中的种种问题，云雾皆散心中唯有明月。</h4>
+              <p>经典贪心例题🤭</p>
+<span id="more"></span>
+
+<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定三个点<strong>A,B,C</strong>的坐标，现要求连接三个点，使得经过的路径和最短。</p>
+<p><img src="https://espresso.codeforces.com/13eba4ed2c479ba54bf8cdb6ec28f33000ffbe93.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>数据范围1000*1000，dfs显然不可取；又因为我比较菜，没一眼看出来这道题的dp思路，于是自然而然地选择了贪心。</p>
+<p>首先我们知道，直接连接两点，可以得到任意两点之间的最短路径；此时，我们已有一条AB之间的最短路径，贪心地分析，若要总路径最短，只需要让C点与AB两点相连的新路径尽可能短，即可得到最短的总路径和。进一步分析，若要让第三点与该两点相通，只需要将第三点与两点及其之间的路径上与之距离最近的一点相连，就能使得新连接的路径长度最短，从而实现总路径最短。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 1005</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span> &#123;</span><br>	<span class="hljs-keyword">int</span> x, y;<br>&#125; A[<span class="hljs-number">5</span>], bestPoint;<br><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(point a, point b)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (a.x != b.x)<br>		<span class="hljs-keyword">return</span> a.x &lt; b.x;<br>	<span class="hljs-keyword">return</span> a.y &lt; b.y;<br>&#125;<br><span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">int</span> note[maxn][maxn];<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	cin &gt;&gt; A[<span class="hljs-number">1</span>].x &gt;&gt; A[<span class="hljs-number">1</span>].y &gt;&gt; A[<span class="hljs-number">2</span>].x &gt;&gt; A[<span class="hljs-number">2</span>].y &gt;&gt; A[<span class="hljs-number">3</span>].x &gt;&gt; A[<span class="hljs-number">3</span>].y;<br>	<span class="hljs-built_in">sort</span>(A + <span class="hljs-number">1</span>, A + <span class="hljs-number">4</span>, cmp);<span class="hljs-comment">//根据X对三点进行排序</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = A[<span class="hljs-number">1</span>].x; i &lt;= A[<span class="hljs-number">2</span>].x; i++) &#123;<br>		note[i][A[<span class="hljs-number">1</span>].y] = <span class="hljs-number">1</span>;<br>		ans++;<br>	&#125;<br>	bestPoint.x = A[<span class="hljs-number">2</span>].x;<br>	bestPoint.y = A[<span class="hljs-number">1</span>].y;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-built_in">min</span>(A[<span class="hljs-number">1</span>].y, A[<span class="hljs-number">2</span>].y); i &lt;= <span class="hljs-built_in">max</span>(A[<span class="hljs-number">1</span>].y, A[<span class="hljs-number">2</span>].y); i++) &#123;<br>		note[A[<span class="hljs-number">2</span>].x][i] = <span class="hljs-number">1</span>;<br>		ans++;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(bestPoint.y - A[<span class="hljs-number">3</span>].y) &gt; <span class="hljs-built_in">abs</span>(i - A[<span class="hljs-number">3</span>].y))<br>			bestPoint.y = i;<br>	&#125;<br>    <span class="hljs-comment">//先连接AB两点，并找出路径上与C最近的点</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = bestPoint.x; i &lt;= A[<span class="hljs-number">3</span>].x; i++) &#123;<br>		note[i][bestPoint.y] = <span class="hljs-number">1</span>;<br>		ans++;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-built_in">min</span>(bestPoint.y, A[<span class="hljs-number">3</span>].y); i &lt;= <span class="hljs-built_in">max</span>(bestPoint.y, A[<span class="hljs-number">3</span>].y); i++) &#123;<br>		note[A[<span class="hljs-number">3</span>].x][i] = <span class="hljs-number">1</span>;<br>		ans++;<br>	&#125;<br>	cout &lt;&lt; ans - <span class="hljs-number">3</span> &lt;&lt; endl;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; maxn; i++) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; maxn; j++) &#123;<br>			<span class="hljs-keyword">if</span> (note[i][j])<br>				cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; j &lt;&lt; endl;<br>		&#125;<br>	&#125;<br>    <span class="hljs-comment">//连接C与AB路径上找到的点</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
             </div>
             <hr>
             <div>
@@ -267,7 +261,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%9D%82%E5%8A%A1/">杂务</a>
+                      <a class="hover-with-bg" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
                     
                   </div>
                 
@@ -275,7 +269,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%8C%97%E6%96%B9%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6/">北方工业大学</a>
+                      <a class="hover-with-bg" href="/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/">恢复OI实力</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B4%AA%E5%BF%83/">贪心</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CodeForces/">CodeForces</a>
                     
                   </div>
                 
@@ -292,18 +290,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/08/13/CF1087C/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CF1087C</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/08/12/CF616B/">
-                        <span class="hidden-mobile">CF616B-Comparing Two Long Integers</span>
+                      <a href="/2021/08/12/%E6%96%B0%E7%94%9F%E5%85%A5%E5%AD%A6%E6%8C%87%E5%8D%97/">
+                        <span class="hidden-mobile">北方工业大学新生入学指南</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
