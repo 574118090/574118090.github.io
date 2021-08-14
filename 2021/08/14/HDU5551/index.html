@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="作为一道C题属实是不应该是这个难度。">
+  <meta name="description" content="陈的博客">
   <meta name="author" content="想变成一只白泽">
   <meta name="keywords" content="">
   
-  <title>CF616C-The Labyrinth - 追梦的陈~</title>
+  <title>HDU5551-Huatuo&#39;s Medicine - 追梦的陈~</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="CF616C-The Labyrinth">
+            <span class="h2" id="subtitle" title="HDU5551-Huatuo's Medicine">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-08-14 12:16" pubdate>
-        2021年8月14日 中午
+      <time datetime="2021-08-14 21:57" pubdate>
+        2021年8月14日 晚上
       </time>
     </span>
   
@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      594 字
+      440 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      5
        分钟
     </span>
   
@@ -240,16 +240,17 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CF616C-The Labyrinth</h1>
+            <h1 style="display: none">HDU5551-Huatuo&#39;s Medicine</h1>
             
             <div class="markdown-body">
-              <p>作为一道C题属实是不应该是这个难度。</p>
-<span id="more"></span>
-
-<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给你一张图，‘*’表示墙，‘.’表示空地，问每个’*‘周围的联通快中‘.’的数量和 mod 10，属于同一个联通快的只计算一次。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>显然我们会想到，最简单的思路就是从每个’*‘点开始做搜索，但是显然会超时；于是我们可以换一种思路来，先求出联通块及其位置，参数，然后依次查询每个’/*’位置时输出加上与之相连的联通块联通数量即可。</p>
-<p>代码看似很复杂，其实思路十分简单。给予每个连通块一个序号，每次在遍历到’*’时检查周围联通块的序号，将序号对应的连通块的大小加入答案之中，最后删除序号重复的值即可。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> inte long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 1005</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">register</span> <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>		f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>		_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> n, m, now;<br><span class="hljs-keyword">char</span> a[maxn][maxn];<br><span class="hljs-keyword">int</span> vis[maxn][maxn];<br><span class="hljs-keyword">int</span> note[maxn * maxn + <span class="hljs-number">1</span>];<br><span class="hljs-keyword">int</span> nowFlag = <span class="hljs-number">1</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> X, <span class="hljs-keyword">int</span> Y, <span class="hljs-keyword">int</span> flag)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (a[X][Y] == <span class="hljs-string">&#x27;*&#x27;</span> || vis[X][Y] != <span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span>;<br>	<span class="hljs-keyword">if</span> (X &lt; <span class="hljs-number">1</span> || X &gt; n || Y &lt; <span class="hljs-number">1</span> || Y &gt; m)<br>		<span class="hljs-keyword">return</span>;<br>	now++;<br>	vis[X][Y] = flag;<br>	<span class="hljs-built_in">dfs</span>(X + <span class="hljs-number">1</span>, Y, flag);<br>	<span class="hljs-built_in">dfs</span>(X - <span class="hljs-number">1</span>, Y, flag);<br>	<span class="hljs-built_in">dfs</span>(X, Y + <span class="hljs-number">1</span>, flag);<br>	<span class="hljs-built_in">dfs</span>(X, Y - <span class="hljs-number">1</span>, flag);<br>	note[flag] = <span class="hljs-built_in">max</span>(note[flag], now);<br>	<span class="hljs-keyword">return</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>	n = <span class="hljs-built_in">read</span>(), m = <span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++)<br>			a[i][j] = <span class="hljs-built_in">getchar</span>();<br>		<span class="hljs-keyword">char</span> temp = <span class="hljs-built_in">getchar</span>();<br>	&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) &#123;<br>			<span class="hljs-keyword">if</span> (vis[i][j] != <span class="hljs-number">0</span> || a[i][j] == <span class="hljs-string">&#x27;*&#x27;</span>)<br>				<span class="hljs-keyword">continue</span>;<br>			<span class="hljs-keyword">else</span> &#123;<br>				now = <span class="hljs-number">0</span>;<br>				<span class="hljs-built_in">dfs</span>(i, j, nowFlag++);<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-comment">//cout &lt;&lt; &quot;________________________________\n&quot;;</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) &#123;<br>			<span class="hljs-keyword">if</span> (a[i][j] == <span class="hljs-string">&#x27;.&#x27;</span>)<br>				cout &lt;&lt; <span class="hljs-string">&#x27;.&#x27;</span>;<br>			<span class="hljs-keyword">else</span> &#123;<br>				<span class="hljs-keyword">int</span> ans = note[vis[i + <span class="hljs-number">1</span>][j]] + note[vis[i - <span class="hljs-number">1</span>][j]] + note[vis[i][j + <span class="hljs-number">1</span>]] + note[vis[i][j - <span class="hljs-number">1</span>]] + <span class="hljs-number">1</span>;<br>				<span class="hljs-keyword">int</span> a = vis[i + <span class="hljs-number">1</span>][j], b = vis[i - <span class="hljs-number">1</span>][j], c = vis[i][j + <span class="hljs-number">1</span>], d = vis[i][j - <span class="hljs-number">1</span>];<br>				<span class="hljs-keyword">if</span> (a == b || a == c || a == d)<br>					ans -= note[a];<br>				<span class="hljs-keyword">if</span> (b == c || b == d)<br>					ans -= note[b];<br>				<span class="hljs-keyword">if</span> (c == d)<br>					ans -= note[c];<br>				cout &lt;&lt; ans % <span class="hljs-number">10</span>;<br>			&#125;<br>		&#125;<br>		cout &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <p>没啥好说的签到题，虽然依旧卡了我十来分钟。</p>
+<h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>华佗是一位著名的医生。他用同样的瓶子装药。药物有不同的种类。华佗把药装进瓶子里，并用链子把这些瓶子连在一起。</p>
+<p>然而，有一个关键的问题。当华佗到达病人家时，他从包里拿出链子，他不知道哪个瓶子装的是哪一种药，但他记得链子上瓶子的顺序。</p>
+<p>对于这个问题，华佗有自己的解决办法。当他需要带两种药时，例如A和B，他会把A放在一个瓶子里，把B放在两个瓶子里。然后他将按照’ - B - A - B - ‘的顺序把瓶子锁起来。这样，当他到达病人家时，他知道中间的瓶子是药A，两边的瓶子是药B。</p>
+<p>现在你需要帮华佗算出他要带N种药最少需要多少瓶。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>最初没读懂题…在我的理解里面，当装三瓶药时序列应该是这样的：C-B-C-A-C-B-C，这样我就能保证每瓶药的两边都是一样的药了…</p>
+<p>事实上只用让整串药是对称的就行了= =，直接输出2*n-1</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">register</span> <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>		f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>		_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> t = <span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">int</span> flag = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span> (t--) &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;Case #&quot;</span> &lt;&lt; flag &lt;&lt; <span class="hljs-string">&quot;: &quot;</span> &lt;&lt; <span class="hljs-built_in">read</span>() &lt;&lt; endl;<br>		flag++;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
             </div>
@@ -268,11 +269,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/">恢复OI实力</a>
+                      <a class="hover-with-bg" href="/tags/%E5%87%86%E5%A4%87CCPC2021/">准备CCPC2021</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%90%9C%E7%B4%A2/">搜索</a>
+                      <a class="hover-with-bg" href="/tags/%E7%AD%BE%E5%88%B0%E9%A2%98/">签到题</a>
                     
-                      <a class="hover-with-bg" href="/tags/CodeForeces/">CodeForeces</a>
+                      <a class="hover-with-bg" href="/tags/HDU/">HDU</a>
                     
                   </div>
                 
@@ -289,9 +290,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/08/14/HDU5551/">
+                      <a href="/2021/08/14/HDU5540/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">HDU5551-Huatuo's Medicine</span>
+                        <span class="hidden-mobile">HDU5540</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -299,8 +300,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/08/13/CF1087C/">
-                        <span class="hidden-mobile">CF1087C-Connect Three</span>
+                      <a href="/2021/08/14/CF616C/">
+                        <span class="hidden-mobile">CF616C-The Labyrinth</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
