@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-08-15T07:41:15.417Z</updated>
+  <updated>2021-08-26T10:32:21.889Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>白泽的前端编程规范</title>
+    <link href="http://example.com/2021/08/26/%E7%99%BD%E6%B3%BD%E7%9A%84%E5%89%8D%E7%AB%AF%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
+    <id>http://example.com/2021/08/26/%E7%99%BD%E6%B3%BD%E7%9A%84%E5%89%8D%E7%AB%AF%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</id>
+    <published>2021-08-26T10:32:05.000Z</published>
+    <updated>2021-08-26T10:32:21.889Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="白泽的前端编程规范"><a href="#白泽的前端编程规范" class="headerlink" title="白泽的前端编程规范"></a>白泽的前端编程规范</h2><blockquote><p>现代软件架构的复杂性需要协同开发完成，对软件来说，适当的规范和标准绝不是消灭代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的统一方式一起做事，提升协作效率，降低沟通成本。</p><pre><code>                                                                                                                                                                                                                            ——Jean·Piaget</code></pre></blockquote><h4 id="一-编程规约"><a href="#一-编程规约" class="headerlink" title="一.编程规约"></a>一.编程规约</h4><h5 id="（一）命名规范"><a href="#（一）命名规范" class="headerlink" title="（一）命名规范"></a>（一）命名规范</h5><h6 id="1-1-1-项目命名"><a href="#1-1-1-项目命名" class="headerlink" title="1.1.1 项目命名"></a>1.1.1 项目命名</h6><p>全部采用小写字母+中划线的形式。</p><p><em>正例：small-seven</em></p><p><em>反例：Small-seven/small_seven</em></p><h6 id="1-1-2-目录命名"><a href="#1-1-2-目录命名" class="headerlink" title="1.1.2 目录命名"></a>1.1.2 目录命名</h6><p>全部采用小写形式，以中划线分隔，单词有复数形式时使用复数，缩写不使用复数。</p><p><em>正例：scripts/styles/img/doc</em></p><p>反例：script/imgs</p><h6 id="1-1-3-JS、CSS、HTML、PNG文件命名"><a href="#1-1-3-JS、CSS、HTML、PNG文件命名" class="headerlink" title="1.1.3 JS、CSS、HTML、PNG文件命名"></a>1.1.3 JS、CSS、HTML、PNG文件命名</h6><p>采用小写形式，以中划线分隔。</p><p><em>正例：small-seven.js/small-seven.css/small-seven.html</em></p><p><em>反例：randomController.js/User_impl.js</em></p><h6 id="1-1-4-命名严谨性"><a href="#1-1-4-命名严谨性" class="headerlink" title="1.1.4 命名严谨性"></a>1.1.4 命名严谨性</h6><p>避免拼音与英文混合的方式，禁止直接使用中文。不推荐使用纯拼音命名。</p><p><em>正例：henan/luoyang/xiaoqi等国际通用名称，可视作英文</em></p><p><em>反例：var 测试变量/get-ping-fen() [score]</em></p><p><strong>杜绝完全不规范的缩写，避免望文不知意：</strong></p><p><em>反例：AbstractClass—&gt;AbsClass</em></p><h5 id="（二）HTML规范"><a href="#（二）HTML规范" class="headerlink" title="（二）HTML规范"></a>（二）HTML规范</h5><h6 id="1-2-1-HTML类型"><a href="#1-2-1-HTML类型" class="headerlink" title="1.2.1 HTML类型"></a>1.2.1 HTML类型</h6><p>推荐使用HTML5的文档类型申明：</p><ul><li>规定字符编码（UTF-8）</li><li>IE兼容模式</li><li>doctype大写</li></ul><p><em>正例：</em></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=Edge&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Page title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;images/company-logo.png&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Company&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure><h6 id="1-2-2-缩进"><a href="#1-2-2-缩进" class="headerlink" title="1.2.2 缩进"></a>1.2.2 缩进</h6><p>缩进应使用两个空格（一个tab）</p><p>嵌套的节点应当缩进。</p><h6 id="1-2-3-代码分块"><a href="#1-2-3-代码分块" class="headerlink" title="1.2.3 代码分块"></a>1.2.3 代码分块</h6><p>不同业务的代码应分别使用div元素包裹（导航栏应使用nav），以区分其模块。同时，尽量避免冗余的div嵌套，对于任何超过五层的嵌套都应进行重写。</p><p><em>正例：</em></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ui container&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./img/home&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>首页    <br>        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span><br></code></pre></td></tr></table></figure><h6 id="1-2-4-分块注释"><a href="#1-2-4-分块注释" class="headerlink" title="1.2.4 分块注释"></a>1.2.4 分块注释</h6><p>在每一个块状元素、列表元素和表格元素后，应以HTML格式加注注释。</p><h6 id="1-2-5-语义化标签"><a href="#1-2-5-语义化标签" class="headerlink" title="1.2.5 语义化标签"></a>1.2.5 语义化标签</h6><p>优先使用语义化的标签。</p><p><em>正例：</em></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>头部<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>尾部<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span><br></code></pre></td></tr></table></figure><p><em>反例：</em></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>头部<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure><h6 id="1-2-6-引号"><a href="#1-2-6-引号" class="headerlink" title="1.2.6 引号"></a>1.2.6 引号</h6><p>在语法允许时，尽可能多地使用单引号而非双引号。</p><h5 id="（三）CSS规范"><a href="#（三）CSS规范" class="headerlink" title="（三）CSS规范"></a>（三）CSS规范</h5><h6 id="1-3-1-命名"><a href="#1-3-1-命名" class="headerlink" title="1.3.1 命名"></a>1.3.1 命名</h6><ul><li>类型名称使用小写字母，以中划线分隔。</li><li>id采用小驼峰式命名（justLikeThis，除第一个单词外所有单词首字母大写）</li></ul><p>ID 和 class 的名称总是使用可以反应元素目的和用途的名称，或其他通用的名称，代替表象和晦涩难懂的名称。</p><p><em>正例：</em></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.heavy</span>&#123;<br>    <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">800</span>;<br>&#125;<br><span class="hljs-selector-class">.warning</span>&#123;<br>    <span class="hljs-attribute">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure><p><em>反例：</em></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.fw-800</span>&#123; <br>    <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">800</span>;<br>&#125; <br><span class="hljs-selector-class">.red</span> &#123; <br>    <span class="hljs-attribute">color</span>: red; <br>&#125;<br></code></pre></td></tr></table></figure><h6 id="1-3-2-尽可能少地使用缩写属性"><a href="#1-3-2-尽可能少地使用缩写属性" class="headerlink" title="1.3.2 尽可能少地使用缩写属性"></a>1.3.2 尽可能少地使用缩写属性</h6><p><em>正例：</em></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs CSS"><span class="hljs-attribute">border-top-style</span>: none;<br><span class="hljs-attribute">font-family</span>: palatino, georgia, serif;<br><span class="hljs-attribute">font-size</span>: <span class="hljs-number">100%</span>;<br><span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.6</span>;<br><span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">2em</span>;<br><span class="hljs-attribute">padding-left</span>: <span class="hljs-number">1em</span>;<br><span class="hljs-attribute">padding-right</span>: <span class="hljs-number">1em</span>;<br><span class="hljs-attribute">padding-top</span>: <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure><p><em>反例：</em></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">border-top</span>: <span class="hljs-number">0</span>;<br><span class="hljs-attribute">font</span>: <span class="hljs-number">100%</span>/<span class="hljs-number">1.6</span> palatino, georgia, serif;<br><span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">2em</span>;<br></code></pre></td></tr></table></figure><p><strong>注：虽然使用缩写是一件很酷的事儿，而且很多大厂都有这样的要求，但是详细一点对初学者更友好。</strong></p><h6 id="1-3-3-每个选择器独占一行"><a href="#1-3-3-每个选择器独占一行" class="headerlink" title="1.3.3 每个选择器独占一行"></a>1.3.3 每个选择器独占一行</h6><p><em>正例：</em></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">button</span>&#123;    <span class="hljs-attribute">width</span>:<span class="hljs-number">100px</span>;    <span class="hljs-attribute">height</span>:<span class="hljs-number">50px</span>;    <span class="hljs-attribute">color</span>:<span class="hljs-number">#fff</span>;    <span class="hljs-attribute">background</span>:<span class="hljs-number">#00a0e9</span>;&#125;<br></code></pre></td></tr></table></figure><p><em>反例：</em></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">button</span>&#123;    <span class="hljs-attribute">width</span>:<span class="hljs-number">100px</span>;<span class="hljs-attribute">height</span>:<span class="hljs-number">50px</span>;<span class="hljs-attribute">color</span>:<span class="hljs-number">#fff</span>;<span class="hljs-attribute">background</span>:<span class="hljs-number">#00a0e9</span>;&#125;<br></code></pre></td></tr></table></figure><h5 id="（四）JS规范"><a href="#（四）JS规范" class="headerlink" title="（四）JS规范"></a>（四）JS规范</h5><h6 id="1-4-1-命名"><a href="#1-4-1-命名" class="headerlink" title="1.4.1 命名"></a>1.4.1 命名</h6><ul><li>采用小驼峰式命名方法名、参数名、成员变量、局部变量。</li><li>其中方法命名要求动词或动词+名词的形式。</li></ul><p><em>正例：</em>saveUser/findTheLastVisitor</p><p><em>反例：save/open/find</em></p><p><strong>注：增删改查只能使用：add/update/delete/detail/get</strong></p><p><strong>附：函数方法常用动词表：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">get 获取/set 设置,add 增加/remove 删除create 创建/destory 移除start 启动/stop 停止open 打开/close 关闭,read 读取/write 写入load 载入/save 保存,create 创建/destroy 销毁begin 开始/end 结束,backup 备份/restore 恢复import 导入/export 导出,split 分割/merge 合并inject 注入/extract 提取,attach 附着/detach 脱离bind 绑定/separate 分离,view 查看/browse 浏览edit 编辑/modify 修改,select 选取/mark 标记copy 复制/paste 粘贴,undo 撤销/redo 重做insert 插入/delete 移除,add 加入/append 添加clean 清理/clear 清除,index 索引/sort 排序find 查找/search 搜索,increase 增加/decrease 减少play 播放/pause 暂停,launch 启动/run 运行compile 编译/execute 执行,debug 调试/trace 跟踪observe 观察/listen 监听,build 构建/publish 发布input 输入/output 输出,encode 编码/decode 解码encrypt 加密/decrypt 解密,compress 压缩/decompress 解压缩pack 打包/unpack 解包,parse 解析/emit 生成connect 连接/disconnect 断开,send 发送/receive 接收download 下载/upload 上传,refresh 刷新/synchronize 同步update 更新/revert 复原,lock 锁定/unlock 解锁check out 签出/check in 签入,submit 提交/commit 交付push 推/pull 拉,expand 展开/collapse 折叠begin 起始/end 结束,start 开始/finish 完成enter 进入/exit 退出,abort 放弃/quit 离开obsolete 废弃/depreciate 废旧,collect 收集/aggregate 聚集<br></code></pre></td></tr></table></figure><ul><li>常量命名全部大写，单词间以下划线隔开，力求表达语义完整。</li></ul><p><em>正例：MAX_STOCK_COUNT</em></p><p><em>反例：MAX_COUNT/Max-STOCK-Count</em></p><h6 id="1-4-2-代码格式"><a href="#1-4-2-代码格式" class="headerlink" title="1.4.2 代码格式"></a>1.4.2 代码格式</h6><p>不同逻辑、不同业务的代码之间插入空行以提升可读性。任何情况下都没必要插入多个空行进行隔开。</p><h6 id="1-4-3-括号"><a href="#1-4-3-括号" class="headerlink" title="1.4.3 括号"></a>1.4.3 括号</h6><p>这些关键字后必须有大括号：if, else, for, while, do, switch, try, catch, finally, with。即使有时代码只有一行。</p><h5 id="（五）前后端对接规范"><a href="#（五）前后端对接规范" class="headerlink" title="（五）前后端对接规范"></a>（五）前后端对接规范</h5><ul><li>前后端方法名字要尽量保持语义的高度一致性。</li><li>文件、变量名应与后端一致。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;白泽的前端编程规范&quot;&gt;&lt;a href=&quot;#白泽的前端编程规范&quot; class=&quot;headerlink&quot; title=&quot;白泽的前端编程规范&quot;&gt;&lt;/a&gt;白泽的前端编程规范&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;现代软件架构的复杂性需要协同开发完成，对软件来说，适当的规</summary>
+      
+    
+    
+    
+    <category term="杂务" scheme="http://example.com/categories/%E6%9D%82%E5%8A%A1/"/>
+    
+    
+    <category term="前端" scheme="http://example.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title>HDU5540-Secrete Master Plan</title>
     <link href="http://example.com/2021/08/14/HDU5540/"/>
     <id>http://example.com/2021/08/14/HDU5540/</id>
     <published>2021-08-14T14:29:24.000Z</published>
-    <updated>2021-08-15T07:41:15.417Z</updated>
+    <updated>2021-08-15T14:47:13.373Z</updated>
     
     <content type="html"><![CDATA[<p>对自己的代码水平产生了深深的怀疑。反反复复debug了不下十次，全是奇奇怪怪的小问题。</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>孔明给了张飞一个藏在口袋里的秘密计划。该计划指示如何在城墙的四角部署士兵。不幸的是，当费打开口袋时，他发现一张纸上只有四个点写的数字。这些数字形成了2×2矩阵，但费不知道拿纸的正确方向。真遗憾!</p><p>给出了两个秘密的主计划。第一个是大师的原始计划。第二个是费开的计划。孔明有很多口袋，可能给错了口袋。确定Fei是否收到了正确的口袋。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>模拟，让纸张旋转就完事了…</p><p>至于怎么旋转，看看样例就好了嘛~</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 20</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">register</span> <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">return</span> _ * f;<br>&#125;<br>string a1, a2;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">rotating</span><span class="hljs-params">()</span> </span>&#123;<br>string temp = a1;<br>a1[<span class="hljs-number">0</span>] = temp[<span class="hljs-number">1</span>];<br>a1[<span class="hljs-number">1</span>] = temp[<span class="hljs-number">3</span>];<br>a1[<span class="hljs-number">2</span>] = temp[<span class="hljs-number">0</span>];<br>a1[<span class="hljs-number">3</span>] = temp[<span class="hljs-number">2</span>];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">int</span> t = <span class="hljs-built_in">read</span>();<br><span class="hljs-keyword">int</span> temp = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> (t--) &#123;<br>a1 = a2 = <span class="hljs-string">&quot;1234&quot;</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;<br>a1[i] = <span class="hljs-built_in"><span class="hljs-keyword">char</span></span>(<span class="hljs-built_in">read</span>() + <span class="hljs-string">&#x27;0&#x27;</span>);<br>&#125;<br><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;<br>a2[i] = <span class="hljs-built_in"><span class="hljs-keyword">char</span></span>(<span class="hljs-built_in">read</span>() + <span class="hljs-string">&#x27;0&#x27;</span>);<br>&#125;<br><span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">4</span>; i++) &#123;<br><span class="hljs-keyword">if</span> (a1 == a2)<br>flag = <span class="hljs-number">1</span>;<br><span class="hljs-built_in">rotating</span>();<br>&#125;<br><span class="hljs-keyword">if</span> (flag)<br>cout &lt;&lt; <span class="hljs-string">&quot;Case #&quot;</span> &lt;&lt; temp &lt;&lt; <span class="hljs-string">&quot;: &quot;</span> &lt;&lt; <span class="hljs-string">&quot;POSSIBLE&quot;</span> &lt;&lt; endl;<br><span class="hljs-keyword">else</span><br>cout &lt;&lt; <span class="hljs-string">&quot;Case #&quot;</span> &lt;&lt; temp &lt;&lt; <span class="hljs-string">&quot;: &quot;</span> &lt;&lt; <span class="hljs-string">&quot;IMPOSSIBLE&quot;</span> &lt;&lt; endl;<br>temp++;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
@@ -35,9 +60,9 @@
     
     <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
     
-    <category term="准备CCPC2021" scheme="http://example.com/tags/%E5%87%86%E5%A4%87CCPC2021/"/>
-    
     <category term="HDU" scheme="http://example.com/tags/HDU/"/>
+    
+    <category term="准备CCPC2021" scheme="http://example.com/tags/%E5%87%86%E5%A4%87CCPC2021/"/>
     
   </entry>
   
@@ -58,11 +83,11 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
+    <category term="HDU" scheme="http://example.com/tags/HDU/"/>
+    
     <category term="准备CCPC2021" scheme="http://example.com/tags/%E5%87%86%E5%A4%87CCPC2021/"/>
     
     <category term="签到题" scheme="http://example.com/tags/%E7%AD%BE%E5%88%B0%E9%A2%98/"/>
-    
-    <category term="HDU" scheme="http://example.com/tags/HDU/"/>
     
   </entry>
   
@@ -108,11 +133,11 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
+    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
     <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
     <category term="贪心" scheme="http://example.com/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
     
   </entry>
   
@@ -154,11 +179,11 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
+    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
     
     <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
     
-    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
   </entry>
   
@@ -179,11 +204,11 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
+    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
     
     <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
     
-    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
   </entry>
   
@@ -229,11 +254,11 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
+    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
     
     <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
     
-    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
   </entry>
   
@@ -254,11 +279,11 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
+    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
     <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
     <category term="贪心" scheme="http://example.com/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
     
   </entry>
   
@@ -279,9 +304,9 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
-    
     <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
   </entry>
   
@@ -402,9 +427,9 @@
     
     <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
-    <category term="算法裸题" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E8%A3%B8%E9%A2%98/"/>
-    
     <category term="搜索" scheme="http://example.com/tags/%E6%90%9C%E7%B4%A2/"/>
+    
+    <category term="算法裸题" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E8%A3%B8%E9%A2%98/"/>
     
   </entry>
   
@@ -427,9 +452,9 @@
     
     <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
-    <category term="算法裸题" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E8%A3%B8%E9%A2%98/"/>
-    
     <category term="搜索" scheme="http://example.com/tags/%E6%90%9C%E7%B4%A2/"/>
+    
+    <category term="算法裸题" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E8%A3%B8%E9%A2%98/"/>
     
   </entry>
   
@@ -450,9 +475,9 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
-    
     <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
+    
+    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
     <category term="NOIP真题" scheme="http://example.com/tags/NOIP%E7%9C%9F%E9%A2%98/"/>
     
@@ -477,34 +502,9 @@
     
     <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
     
-    <category term="算法裸题" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E8%A3%B8%E9%A2%98/"/>
-    
     <category term="搜索" scheme="http://example.com/tags/%E6%90%9C%E7%B4%A2/"/>
     
-  </entry>
-  
-  <entry>
-    <title>计蒜客-找数字</title>
-    <link href="http://example.com/2021/07/31/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%89%BE%E6%95%B0%E5%AD%97/"/>
-    <id>http://example.com/2021/07/31/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%89%BE%E6%95%B0%E5%AD%97/</id>
-    <published>2021-07-31T06:19:00.000Z</published>
-    <updated>2021-08-01T08:52:45.305Z</updated>
-    
-    <content type="html"><![CDATA[<p>补充练习</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给一个数 <em>n</em>，让你找出一个只由 0,1 组成的十进制数 <em>m</em>，要求这个正整数 <em>m</em> 可以被 <em>n</em> 整除。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>搜索裸题，设置上界，每次在末尾添加一个0或1，直到满足题意为止。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> n, ans;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> now)</span> </span>&#123;<br><span class="hljs-comment">//cout &lt;&lt; &quot;now:&quot; &lt;&lt; now &lt;&lt; endl;</span><br><span class="hljs-keyword">if</span> (now &gt; <span class="hljs-number">100000000000</span>)<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">if</span> (now % n == <span class="hljs-number">0</span> &amp;&amp; now != <span class="hljs-number">0</span>) &#123;<br>ans = now;<br><span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (now * <span class="hljs-number">10</span> &lt; <span class="hljs-number">1e19</span>) &#123;<br><span class="hljs-keyword">if</span> (<span class="hljs-built_in">dfs</span>(now * <span class="hljs-number">10</span> + <span class="hljs-number">1</span>))<br><span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br><span class="hljs-keyword">if</span> (<span class="hljs-built_in">dfs</span>(now * <span class="hljs-number">10</span>))<br><span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>n = <span class="hljs-built_in">read</span>();<br><span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>);<br>cout &lt;&lt; ans &lt;&lt; endl;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;补充练习&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
-    
     <category term="算法裸题" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E8%A3%B8%E9%A2%98/"/>
-    
-    <category term="搜索" scheme="http://example.com/tags/%E6%90%9C%E7%B4%A2/"/>
     
   </entry>
   
