@@ -326,7 +326,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a;<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a);<span class="hljs-comment">//这行代码表示将a赋值为你输入的一个数。假设输入的是x，这行代码的效果就等同于a=x;//占位符的使用方式与printf中一模一样。&amp;的含义随后白泽会在指针那一课教给你。</span><br></code></pre></td></tr></table></figure>
 
 <p>最后我们再来看一点特殊情况：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//假设我们输入的是这样： 1,2   应该怎么办呢？scanf(&quot;%d,%d&quot;,a,b);//假设输入是这样呢？   1 2scanf(&quot;%d %d&quot;,a,b);//假设输入是这样呢？ 12scanf(&quot;%d&quot;,a);//dbq，但是如果你想输入1和2，那就必须让他俩分开来。//当然我也可以教你不分开的方法，以后再说叭~</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//假设我们输入的是这样： 1,2   应该怎么办呢？scanf(&quot;%d,%d&quot;,&amp;a,&amp;b);//假设输入是这样呢？   1 2scanf(&quot;%d %d&quot;,&amp;a,&amp;b);//假设输入是这样呢？ 12scanf(&quot;%d&quot;,a);//dbq，但是如果你想输入1和2，那就必须让他俩分开来。//当然我也可以教你不分开的方法，以后再说叭~</span><br></code></pre></td></tr></table></figure>
 
 <p>很简单是不是！今天的课就这么结束了！</p>
 <p>其实是因为事情有点多所以写得蛮简略的..具体见结语！</p>
