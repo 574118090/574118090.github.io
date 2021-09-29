@@ -16,11 +16,15 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="陈的博客">
+  <meta name="description" content="
+众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~
+笔墨愚钝，不知所言，乞谅。
+注：本系列所有文本除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请联系作者、注明出处！
+——爱你们">
   <meta name="author" content="想变成一只白泽">
   <meta name="keywords" content="">
   
-  <title>白泽的C语言入门（三） - 追梦的陈~</title>
+  <title>白泽的C语言入门（三） 如果，直到，循环 - 追梦的陈~</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -178,7 +182,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="白泽的C语言入门（三）">
+            <span class="h2" id="subtitle" title="白泽的C语言入门（三） 如果，直到，循环">
               
             </span>
 
@@ -240,15 +244,17 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">白泽的C语言入门（三）</h1>
+            <h1 style="display: none">白泽的C语言入门（三） 如果，直到，循环</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强（和蔡兴泉？）带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~</p>
+<p>众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~</p>
 <p>笔墨愚钝，不知所言，乞谅。</p>
 <p>注：本系列所有文本除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0 协议</a> ，转载请联系作者、注明出处！</p>
 <p align="right">——爱你们的白泽</p>
 </blockquote>
+<span id="more"></span>
+
 <h3 id="零-关于逻辑运算，你需要知道的事儿"><a href="#零-关于逻辑运算，你需要知道的事儿" class="headerlink" title="零.关于逻辑运算，你需要知道的事儿"></a>零.关于逻辑运算，你需要知道的事儿</h3><p>补充讲一下之前有关运算符的没讲明白的地方</p>
 <h4 id="1-关于加减乘除以及各种数学运算"><a href="#1-关于加减乘除以及各种数学运算" class="headerlink" title="1.关于加减乘除以及各种数学运算"></a>1.关于加减乘除以及各种数学运算</h4><p>在上一课时中，我们讲到了C语言中的五则运算：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a,b,c;<br><span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,&amp;a,&amp;b);<br>c=a+b;<span class="hljs-comment">//加法运算</span><br>c=a-b;<span class="hljs-comment">//减法运算</span><br>c=a*b;<span class="hljs-comment">//乘法运算</span><br>c=a/b;<span class="hljs-comment">//除法运算</span><br>c=a%b;<span class="hljs-comment">//模运算，使c的值变为a/b的余数，读作a模b</span><br></code></pre></td></tr></table></figure>
@@ -283,7 +289,7 @@
 <h3 id="一-如果，if（我是DJ）你会爱我吗？"><a href="#一-如果，if（我是DJ）你会爱我吗？" class="headerlink" title="一.如果，if（我是DJ）你会爱我吗？"></a>一.如果，if（我是DJ）你会爱我吗？</h3><h4 id="1-本体"><a href="#1-本体" class="headerlink" title="1.本体"></a>1.本体</h4><p>if是一个逻辑块，因此它长得也很逻辑块：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span>()&#123;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>我们在小括号中添加式子或值，在大括号内添加指令。对于一个if逻辑块而言，我们会进行一次判断——<strong>如果小括号内的值大于0，则执行一次大括号里的指令，否则跳过。</strong></p>
+<p>我们在小括号中添加式子或值，在大括号内添加指令。对于一个if逻辑块而言，我们会进行一次判断——<strong>如果小括号内的值不为0，则执行一次大括号里的指令，否则跳过。</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a=<span class="hljs-number">1</span>,b=<span class="hljs-number">2</span>;<br><span class="hljs-keyword">if</span>(a&lt;b)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>if的本体讲完了。没错，就是这么简单。值得注意的是，无论if内部的类容是否被执行，都不会跳过if外的所有内容。</p>
@@ -303,7 +309,7 @@
 <p>显然，这样会让我们代码的行数变得异常地长，因此C语言的发明人定义了另一个革命性的代码块——<strong>While</strong>。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>()&#123;    &#125;<br></code></pre></td></tr></table></figure>
 
-<p>使用while时，<strong>如果小括号中的值不是正数，那么计算机会一直重复while内的指令，直到小括号中的数变为正数为止</strong>。因此我们在之前写的大量if判断可以被替换成这样：</p>
+<p>使用while时，<strong>如果小括号中的值不为0，那么计算机会一直重复while内的指令，直到小括号中的数变为正数为止</strong>。因此我们在之前写的大量if判断可以被替换成这样：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>(a&lt;b)&#123;    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);    a=a+<span class="hljs-number">1</span>;&#125;<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;End&quot;</span>);<br></code></pre></td></tr></table></figure>
 
 <p>当然，如果你希望你的电脑一直输出Hello World直到电量耗尽，可以这样：</p>
@@ -359,6 +365,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/09/27/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">白泽的C语言入门（四） 一点点不一样的数学</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

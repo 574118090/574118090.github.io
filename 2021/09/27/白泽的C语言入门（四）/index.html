@@ -1,0 +1,623 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/my_blog.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="
+众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~
+笔墨愚钝，不知所言，乞谅。
+——爱你们的白泽
+">
+  <meta name="author" content="想变成一只白泽">
+  <meta name="keywords" content="">
+  
+  <title>白泽的C语言入门（四） 一点点不一样的数学 - 追梦的陈~</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="追梦的陈~" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>追梦的陈</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="白泽的C语言入门（四） 一点点不一样的数学">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-27 09:45" pubdate>
+        2021年9月27日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">白泽的C语言入门（四） 一点点不一样的数学</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~</p>
+<p>笔墨愚钝，不知所言，乞谅。</p>
+<p align="right">——爱你们的白泽</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="零-你应该这么理解程序中的数学"><a href="#零-你应该这么理解程序中的数学" class="headerlink" title="零.你应该这么理解程序中的数学"></a>零.你应该这么理解程序中的数学</h3><p>就像白泽之前所说的，程序中的数学和你想的有那么一点点不一样。当然，我们也能找到其与我们学过的小学数学相似的地方。</p>
+<p>在多年的义务教育中，我们了解过，对于任何一个式子，我们都能人为地判断这个式子是成立的或是不成立的。换句话说，我们可以说这个式子是对的或是错的。举个例子，1+2=5是错的，而1+2=3是对的；1&gt;4是错的，5&gt;4是对的。</p>
+<p>在计算机里，我们会将对和错量化为0和1。因此，对于任何一个式子，我们都能说他的值是0或1。再举个例子，1+2=5的值应该为0，1+2=3的值为1；1&gt;4的值为0，5&gt;4的值为1。</p>
+<p>因此实际上，<strong>计算机中的每个式子在本质上都是一个具体的数值，具体是0还是1取决于式子本身是否正确。</strong></p>
+<p>此外，<strong>对于各种运算，计算机都有一个人为规定的运算优先级，这也是你必须掌握的</strong>——一般而言，高优先级的运算会先进行，低优先级的运算会后进行，当优先级相同时，<strong>计算机遵照从左到右的顺序运算</strong>。</p>
+<p>好了，你应该已经理解了程序中的数学是什么样的了。让我们走进具体的运算里。</p>
+<h4 id="一-比四则要多一则的五则运算法则"><a href="#一-比四则要多一则的五则运算法则" class="headerlink" title="一.比四则要多一则的五则运算法则"></a>一.比四则要多一则的五则运算法则</h4><p>我们在之前的课程中已经接触过了计算机的五种基本运算法则了——加、减、乘、除、模，但仅仅只是会用而已。因此，现在让我们走得更深入一些。</p>
+<p><strong>除位运算之外，五则运算是C语言里优先级最高的运算。</strong>而位运算我们现在不学，因此你可以认为五则运算就是C语言里优先级最高的运算了。</p>
+<ul>
+<li><p>加法与减法</p>
+<p>在五则运算中，加法与减法的优先级高于模运算，却低于乘除法。与你想的一样，我们可以用最简单的方式来表达加法与减法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a+b;<br>a<span class="hljs-number">-2</span>;<br><span class="hljs-number">1</span>+<span class="hljs-number">2</span>;<br><span class="hljs-comment">//这些都不是式子，只是一次运算。换句话说，这么写不会改变a的值。</span><br></code></pre></td></tr></table></figure>
+
+<p>当然，我们也能用加减法给一个变量赋值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> c=<span class="hljs-number">2</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> d=c+<span class="hljs-number">2</span>;<br>c=c+<span class="hljs-number">1</span>;<br><span class="hljs-number">1</span>=<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;<span class="hljs-comment">//这是不行的：你不能给一个常数赋值。</span><br></code></pre></td></tr></table></figure>
+
+<p>事实上，如果你只是想要让一个变量的值发生改变，那么代码还可以写得更简洁一点：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a+=<span class="hljs-number">5</span>;<span class="hljs-comment">//等价于a=a+5。</span><br>b-=<span class="hljs-number">5</span>;<span class="hljs-comment">//等价于b=b-5。</span><br></code></pre></td></tr></table></figure>
+
+<p>如果你想让一个变量的值只改变1，那么代码还能再再简洁一点：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a++;<span class="hljs-comment">//等价于a=a+1。</span><br>b--;<span class="hljs-comment">//等价于b=b-1。</span><br>++a;<span class="hljs-comment">//等价于a=a+1。</span><br>--b;<span class="hljs-comment">//等价于b=b-1。</span><br>++++++++a;<span class="hljs-comment">//等价于a=a+4。你当然可以这么写，但是我不建议你折磨自己。</span><br></code></pre></td></tr></table></figure>
+
+<p>我们把最后这一种写法称作自增/自减。你肯定已经发现了，a++和++a两种写法都能让a的值增加1，那它们有什么不同呢？事实上，将符号写在变量的前面与后面，可以赋予这个运算一个优先级。举个例子吧：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a=<span class="hljs-number">1</span>;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,a++);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,++a);<br><span class="hljs-comment">//计算机会输出一个1，再输出一个3。</span><br></code></pre></td></tr></table></figure>
+
+<p>在第一个printf中，计算机会先输出a的值，再使a的值加1；在第二个printf中，计算机会先使a的值加1，再输出a的值——<strong>将符号写在前面会让程序先进行自增自减运算，再进行其它运算；将符号写在后面会使得程序先进行其他运算，再进行自增自减运算。</strong></p>
+</li>
+<li><p>乘法与除法</p>
+<p>乘法与除法具有五则运算里最高的优先级，其用法也与加减法如出一辙：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a*b;<br>a/b;<br><span class="hljs-keyword">int</span> c=<span class="hljs-number">2</span>*<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> d=c/<span class="hljs-number">2</span>;<br>a*=<span class="hljs-number">4</span>;<br>b/=<span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+
+<p>当然你不能用除法这么写：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a**;<span class="hljs-comment">//或许你可以把它理解为a=a*1，但是有什么意义呢？</span><br>b<span class="hljs-comment">//;//很遗憾，//已经作为注释符号了。</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>特地讲一讲除法</p>
+<p>对于除法运算，如果这次运算的被除数和除数均为整数，那么其运算的结果也会是一个整数，这个整数应当是运算后商的整数部分。</p>
+</li>
+</ul>
+</li>
+<li><p>取模运算</p>
+<p>模运算是五则运算中优先级最低的一项。通常情况下，只有完成其它五则运算后，才会进行模运算。</p>
+<p>篇幅有限，加上大家的领悟能力无限，我想在这里我只用写一下取模运算的写法就可以了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a%b;<br><span class="hljs-keyword">int</span> c=<span class="hljs-number">5</span>%<span class="hljs-number">2</span>;<br><span class="hljs-keyword">int</span> d=c%<span class="hljs-number">3</span>;<br>c%=<span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>值得注意的是，<strong>取模运算只能由整数参与，不能也不会包含任何小数</strong>。</p>
+</li>
+</ul>
+<p><strong>注：+=、-=、*=、/=、%=的优先级与简单的五则运算不同，他们的优先级仅仅只高于或且非！</strong>（或且非后面会讲到）</p>
+<p>那么我们就完成了五则运算的讲解。</p>
+<h4 id="二-大于小于等于，比较那个的运算"><a href="#二-大于小于等于，比较那个的运算" class="headerlink" title="二.大于小于等于，比较那个的运算"></a>二.大于小于等于，比较那个的运算</h4><p><strong>逻辑运算的优先级是低于五则运算的。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">1</span>&gt;<span class="hljs-number">5</span>;<br><span class="hljs-number">42</span>&lt;c;<br><span class="hljs-number">5</span>!=<span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这一块儿只有两点需要讲：</p>
+<ul>
+<li>如果你想判断a是否和b相等，应该使用==而不是=，因为=是使右边的值被赋予给左边，==才是比较</li>
+<li>如果你想表达不等于，就使用!=，若左边和右边不相等时这个运算的值为1，否则为0</li>
+</ul>
+<p>不过需要注意的是，在同时比较多个数的大小时，比如你想比较a、b、c三个数的大小，并返回一个值，你或许会这么写：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a&gt;b&gt;c<br></code></pre></td></tr></table></figure>
+
+<p><strong>显然这是一种错误写法，而且好多好多来问我题的同学都犯过这样的错误。</strong>这里白泽统一讲一下原因：</p>
+<p>我们可以带入三个数，令a=6，b=5，c=4，然后自己脑补出这个式子的运算过程：由于式子里所有运算符的优先级相同，因此计算机会从左往右地依次计算。先比较a和b的大小，即判断6&gt;5，得出这个式子的值为1；然后再判断a&gt;b这个式子的值与c之间的大小关系，即判断1&gt;4，得出整个式子的结果为0。</p>
+<p>我想这或许与你的逻辑有所不同。那么我们应该怎么按照自己的想法来判断多个数之间的大小关系呢？继续往下一章看叭~</p>
+<h4 id="三-或且非，相信你永远可靠的逻辑"><a href="#三-或且非，相信你永远可靠的逻辑" class="headerlink" title="三.或且非，相信你永远可靠的逻辑"></a>三.或且非，相信你永远可靠的逻辑</h4><p>接下来让我隆重介绍，怎样正确地表示三个数之间的关系：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a&gt;b &amp;&amp; b&gt;c<br></code></pre></td></tr></table></figure>
+
+<p>这个式子的含义是：a&gt;b而且b&gt;c。相信你肯定已经明白——<strong>在今天介绍的几种运算符里，或且非是优先级最低的。</strong></p>
+<ul>
+<li><p>&amp;&amp;，且运算</p>
+<p>在C语言中，我们用&amp;&amp;表示且，对于两个值a和b，<strong>a &amp;&amp; b</strong>的运算是这样的：当a和b都不为0时，整个式子的值为1，否则为0。这两种写法是等价的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a &amp;&amp; b<br>a <span class="hljs-keyword">and</span> b<br></code></pre></td></tr></table></figure></li>
+<li><p>||，或运算</p>
+<p>在C语言中，我们用||表示或，对于两个值a和b，<strong>a || b</strong>的运算是这样的：当a和b任意一个不为0时，整个式子的值为1，否则为0。这两种写法是等价的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a || b<br>a <span class="hljs-keyword">or</span> b<br></code></pre></td></tr></table></figure></li>
+<li><p>!，非预算</p>
+<p>我们用!表示对一个值取反。对于一个值a，若a为0，!a的值为1，否则为0。没错，你肯定已经理解了——!预算就是把当前运算的对错颠倒过来~</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a=<span class="hljs-number">1</span>,b=<span class="hljs-number">2</span>;<br><span class="hljs-keyword">int</span> c=!(a==b);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,c);<span class="hljs-comment">//这里程序会输出1</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>那么现在，你已经掌握了逻辑运算了。</p>
+<h4 id="四-结语"><a href="#四-结语" class="headerlink" title="四.结语"></a>四.结语</h4><p>累死了，马上下课了，大家再见。</p>
+<p><strong>=3=</strong></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%A8%8B%E5%BA%8F%E5%85%A5%E9%97%A8/">程序入门</a>
+                    
+                      <a class="hover-with-bg" href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/20/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89/">
+                        <span class="hidden-mobile">白泽的C语言入门（三） 如果，直到，循环</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"a8v0m2SwR8k3EiHstiumUlat-gzGzoHsz","appKey":"lVlS0rTg46LhgPOAIcNL7Oyb","placeholder":"说点什么","path":"window.location.pathname","avatar":"retro","meta":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <p align="center" style="font-size:12px;margin-top:50px;">如果远方有战争，我应该掩耳，或是坐起来，惭愧地倾听？应该掩鼻，或该深呼吸，难闻的焦味？</p>
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        渝ICP备2021007428号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
