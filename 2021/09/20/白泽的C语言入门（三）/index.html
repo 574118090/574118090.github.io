@@ -309,7 +309,7 @@
 <p>显然，这样会让我们代码的行数变得异常地长，因此C语言的发明人定义了另一个革命性的代码块——<strong>While</strong>。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>()&#123;    &#125;<br></code></pre></td></tr></table></figure>
 
-<p>使用while时，<strong>如果小括号中的值不为0，那么计算机会一直重复while内的指令，直到小括号中的数变为正数为止</strong>。因此我们在之前写的大量if判断可以被替换成这样：</p>
+<p>使用while时，<strong>如果小括号中的值不为0，那么计算机会一直重复while内的指令，直到小括号中的数变为非0为止</strong>。因此我们在之前写的大量if判断可以被替换成这样：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>(a&lt;b)&#123;    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);    a=a+<span class="hljs-number">1</span>;&#125;<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;End&quot;</span>);<br></code></pre></td></tr></table></figure>
 
 <p>当然，如果你希望你的电脑一直输出Hello World直到电量耗尽，可以这样：</p>
