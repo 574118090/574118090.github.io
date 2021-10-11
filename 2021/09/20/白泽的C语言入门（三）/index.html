@@ -292,7 +292,7 @@
 <p>我们在小括号中添加式子或值，在大括号内添加指令。对于一个if逻辑块而言，我们会进行一次判断——<strong>如果小括号内的值不为0，则执行一次大括号里的指令，否则跳过。</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a=<span class="hljs-number">1</span>,b=<span class="hljs-number">2</span>;<br><span class="hljs-keyword">if</span>(a&lt;b)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>if的本体讲完了。没错，就是这么简单。值得注意的是，无论if内部的类容是否被执行，都不会跳过if外的所有内容。</p>
+<p>if的本体讲完了。没错，就是这么简单。值得注意的是，无论if内部的内容是否被执行，都不会跳过if外的所有内容。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs &#123;">if(a&gt;b)&#123;	if(a&gt;b+2)&#123;		if(a&gt;b+3)&#123;			printf(&quot;这么写当然是合法的，只要你不嫌麻烦，想写几层就写几层~&quot;);		&#125;	&#125;&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="2-else，无限可能"><a href="#2-else，无限可能" class="headerlink" title="2.else，无限可能"></a>2.else，无限可能</h4><p>很多时候，我们也会用到与if配套的else指令，其原理十分简单，我们借助一个例子来说明它的运作方式：</p>
