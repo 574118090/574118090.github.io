@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-09-29T06:58:23.246Z</updated>
+  <updated>2021-10-18T02:02:00.569Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CF749A-Windblume Ode</title>
+    <link href="http://example.com/2021/10/18/CF749A/"/>
+    <id>http://example.com/2021/10/18/CF749A/</id>
+    <published>2021-10-18T01:54:14.000Z</published>
+    <updated>2021-10-18T02:02:00.569Z</updated>
+    
+    <content type="html"><![CDATA[<p>考数学规律的思维题</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定一个n以及n个数，称其一个子序列所有元素的和为该子序列的sum，求满足sum为合数的最大子序列（元素最多），输出其长度以及其组成元素的序号。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>首先，我们需要知道合数的一些性质：</p><ul><li>所有的偶数都是合数（推论：所有的质数均为奇数）</li><li>奇数+奇数或奇数-奇数，结果均为偶数</li><li>偶数+奇数才会产生奇数</li></ul><p>通过这两条性质，我们可以试着对sum进行一些操作了。对于任意一个sum，如果其为偶数，那必然为合数，其对应的子序列一定满足条件；若其为质数，则其一定为奇数，那么这个sum对应的子序列里一定包含至少一个奇数，因为<strong>奇数-奇数一定为偶数</strong>，因此我们直接在sum对应的子序列中去除一个奇数，其结果就一定为合数了。</p><p>由于具有这样的性质，我们就可以贪心地取得最大的sum了——直接求整个序列的sum，若其为合数，则直接输出这个长为n的序列即可；若其为质数，则去掉序列中任意一个奇数，输出长为n-1的序列即可。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 105</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">register</span> <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> a[maxn];<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">int</span> t = <span class="hljs-built_in">read</span>();<br><span class="hljs-keyword">while</span> (t--) &#123;<br><span class="hljs-keyword">int</span> n = <span class="hljs-built_in">read</span>();<br><span class="hljs-keyword">int</span> flag, sum = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>a[i] = <span class="hljs-built_in">read</span>();<br><span class="hljs-keyword">if</span> (a[i] % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>)<br>flag = i;<br>sum += a[i];<br>&#125;<br><span class="hljs-keyword">int</span> t = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i * i &lt;= sum; i++) &#123;<br><span class="hljs-keyword">if</span> (sum % i == <span class="hljs-number">0</span>) &#123;<br>t = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">break</span>;<br>&#125;<br>&#125;<br><span class="hljs-keyword">if</span> (t) &#123;<br>cout &lt;&lt; n &lt;&lt; endl;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>cout &lt;&lt; endl;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>cout &lt;&lt; n - <span class="hljs-number">1</span> &lt;&lt; endl;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br><span class="hljs-keyword">if</span> (i == flag)<br><span class="hljs-keyword">continue</span>;<br>cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>&#125;<br>cout &lt;&lt; endl;<br>&#125;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;考数学规律的思维题&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+    <category term="准备ICPC2021" scheme="http://example.com/tags/%E5%87%86%E5%A4%87ICPC2021/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CF749A-Windblume Ode</title>
+    <link href="http://example.com/2021/10/18/CF749B/"/>
+    <id>http://example.com/2021/10/18/CF749B/</id>
+    <published>2021-10-18T01:54:14.000Z</published>
+    <updated>2021-10-18T02:21:48.361Z</updated>
+    
+    <content type="html"><![CDATA[<p>我以为它是图论，谁又能想到这又是一道贪心呢。</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定n个点和m个约束条件，保证m&lt;n，然后给定m行a、b、c，表示点a和点c之间的路径不能经过点b，现要求将n个点连成一棵树，并输出这棵树上的所有边。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>题目给出了过多的条件导致这道题被完完全全高估了啊喂！！</p><p>由于m小于n，则一定不是所有点都会作为b点，不被允许存在于某一条路径的中间节点。所以我们很容易就可以发现，一定存在至少一个点，可以存在于所有路径的中间。</p><p>那么这道题的难度就降下来了——我们只用选择一个没有作为过b点的点，以其为根节点，构建一张菊花图即可。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 100020</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">register</span> <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> f = <span class="hljs-number">1</span>, _ = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (c &gt; <span class="hljs-string">&#x27;9&#x27;</span> || c &lt; <span class="hljs-string">&#x27;0&#x27;</span>)<br>f = (c == <span class="hljs-string">&#x27;-&#x27;</span>) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>, c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">while</span> (c &lt;= <span class="hljs-string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="hljs-string">&#x27;0&#x27;</span>)<br>_ = (_ &lt;&lt; <span class="hljs-number">3</span>) + (_ &lt;&lt; <span class="hljs-number">1</span>) + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">getchar</span>();<br><span class="hljs-keyword">return</span> _ * f;<br>&#125;<br><span class="hljs-keyword">int</span> n, m;<br><span class="hljs-keyword">int</span> vis[maxn];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; maxn; i++)<br>vis[i] = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">int</span> t = <span class="hljs-built_in">read</span>();<br><span class="hljs-keyword">while</span> (t--) &#123;<br><span class="hljs-built_in">init</span>();<br><span class="hljs-keyword">int</span> n = <span class="hljs-built_in">read</span>(), m = <span class="hljs-built_in">read</span>();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;<br><span class="hljs-keyword">int</span> a = <span class="hljs-built_in">read</span>(), b = <span class="hljs-built_in">read</span>(), c = <span class="hljs-built_in">read</span>();<br>vis[b]++;<br>&#125;<br><span class="hljs-keyword">int</span> flag = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> (vis[flag])<br>flag++;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br><span class="hljs-keyword">if</span> (i == flag)<br><span class="hljs-keyword">continue</span>;<br>cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; flag &lt;&lt; endl;<br>&#125;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;我以为它是图论，谁又能想到这又是一道贪心呢。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
+    
+    <category term="准备ICPC2021" scheme="http://example.com/tags/%E5%87%86%E5%A4%87ICPC2021/"/>
+    
+  </entry>
   
   <entry>
     <title>白泽的C语言入门（四） 一点点不一样的数学</title>
@@ -466,56 +512,6 @@
     <category term="递归" scheme="http://example.com/tags/%E9%80%92%E5%BD%92/"/>
     
     <category term="HDU" scheme="http://example.com/tags/HDU/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CF1175B-Catch Overflow</title>
-    <link href="http://example.com/2021/08/10/CF1175B/"/>
-    <id>http://example.com/2021/08/10/CF1175B/</id>
-    <published>2021-08-10T05:18:36.000Z</published>
-    <updated>2021-08-11T08:29:04.490Z</updated>
-    
-    <content type="html"><![CDATA[<p>用到栈的模拟题~</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>有初始值a=0，进行x次操作，共有如下三种操作模式：</p><ul><li>add：使a增加1</li><li>for num：将其和与之适配的end之间所有操作循环执行num次</li><li>end：与for适配</li></ul><p>如果a的值大于$2^{32}$，输出**OVERFLOW!!!**，否则输出a。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>没啥好说的模拟-.-</p><p>坑点：for循环经过多次堆叠后每次add操作的值有可能大于longlong范围，当然也有可能多次堆叠后不进行add操作，使得堆叠的值又慢慢变小，因此我们可以利用栈存储堆叠到当前状态下需要循环的总次数，而非单次循环的次数。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> n, now;<br>stack&lt;<span class="hljs-keyword">int</span>&gt; st;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br><span class="hljs-keyword">int</span> loop = <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>);<br>cin &gt;&gt; n;<br>st.<span class="hljs-built_in">push</span>(<span class="hljs-number">1</span>);<br><span class="hljs-keyword">while</span> (n--) &#123;<br>string command;<br>cin &gt;&gt; command;<br><span class="hljs-keyword">if</span> (command == <span class="hljs-string">&quot;add&quot;</span>) &#123;<br>now += st.<span class="hljs-built_in">top</span>();<br><span class="hljs-keyword">if</span> (now &gt;= loop) &#123;<br><span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;OVERFLOW!!!&quot;</span>);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (command == <span class="hljs-string">&quot;for&quot;</span>) &#123;<br><span class="hljs-keyword">int</span> temp;<br>cin &gt;&gt; temp;<br><span class="hljs-keyword">if</span> (temp == <span class="hljs-number">0</span>)<br><span class="hljs-keyword">continue</span>;<br>st.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">min</span>(st.<span class="hljs-built_in">top</span>()*temp, loop));<br>&#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-keyword">if</span> (st.<span class="hljs-built_in">empty</span>())<br><span class="hljs-keyword">continue</span>;<br><span class="hljs-keyword">int</span> temp = st.<span class="hljs-built_in">top</span>();<br>st.<span class="hljs-built_in">pop</span>();<br>&#125;<br>&#125;<br>cout &lt;&lt; now &lt;&lt; endl;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;用到栈的模拟题~&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
-    
-    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
-    
-    <category term="模拟" scheme="http://example.com/tags/%E6%A8%A1%E6%8B%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CF1175A-From Hero to Zero</title>
-    <link href="http://example.com/2021/08/10/CF1175A/"/>
-    <id>http://example.com/2021/08/10/CF1175A/</id>
-    <published>2021-08-10T04:16:28.000Z</published>
-    <updated>2021-08-10T12:42:15.105Z</updated>
-    
-    <content type="html"><![CDATA[<p>信心题=W=</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给定一组数<em>n</em>、<em>k</em>，每次可进行两种操作，使n减一，或在n可以被k整除时使之除以k。求将n变为0的最小次数。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>简单贪心。为了以最快的速度将n变为k，我们可以在可以让n与k相除时使之相除，否则将n减少直到可以与k相除或n=0。同时，我们可以合并多次连续的相同操作以降低时间复杂度。这里我只合并了减法操作因为我懒。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 100000005</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> mod 2008</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> t, n, k;<br><br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>cin &gt;&gt; t;<br><span class="hljs-keyword">while</span> (t--) &#123;<br>cin &gt;&gt; n &gt;&gt; k;<br><span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (n != <span class="hljs-number">0</span>) &#123;<br><span class="hljs-keyword">if</span> (n % k == <span class="hljs-number">0</span>) &#123;<br>n /= k;<br>ans++;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-keyword">int</span> temp = n % k;<br>n -= temp;<br>ans += temp;<br>&#125;<br>&#125;<br>cout &lt;&lt; ans &lt;&lt; endl;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;信心题=W=&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="恢复OI实力" scheme="http://example.com/tags/%E6%81%A2%E5%A4%8DOI%E5%AE%9E%E5%8A%9B/"/>
-    
-    <category term="贪心" scheme="http://example.com/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="CodeForces" scheme="http://example.com/tags/CodeForces/"/>
     
   </entry>
   
