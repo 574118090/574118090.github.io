@@ -260,7 +260,7 @@
 <p>因此实际上，<strong>计算机中的每个式子在本质上都是一个具体的数值，具体是0还是1取决于式子本身是否正确。</strong></p>
 <p>此外，<strong>对于各种运算，计算机都有一个人为规定的运算优先级，这也是你必须掌握的</strong>——一般而言，高优先级的运算会先进行，低优先级的运算会后进行，当优先级相同时，<strong>计算机遵照从左到右的顺序运算</strong>。</p>
 <p>好了，你应该已经理解了程序中的数学是什么样的了。让我们走进具体的运算里。</p>
-<h4 id="一-比四则要多一则的五则运算法则"><a href="#一-比四则要多一则的五则运算法则" class="headerlink" title="一.比四则要多一则的五则运算法则"></a>一.比四则要多一则的五则运算法则</h4><p>我们在之前的课程中已经接触过了计算机的五种基本运算法则了——加、减、乘、除、模，但仅仅只是会用而已。因此，现在让我们走得更深入一些。</p>
+<h3 id="一-比四则要多一则的五则运算法则"><a href="#一-比四则要多一则的五则运算法则" class="headerlink" title="一.比四则要多一则的五则运算法则"></a>一.比四则要多一则的五则运算法则</h3><p>我们在之前的课程中已经接触过了计算机的五种基本运算法则了——加、减、乘、除、模，但仅仅只是会用而已。因此，现在让我们走得更深入一些。</p>
 <p><strong>除位运算之外，五则运算是C语言里优先级最高的运算。</strong>而位运算我们现在不学，因此你可以认为五则运算就是C语言里优先级最高的运算了。</p>
 <ul>
 <li><p>加法与减法</p>
@@ -304,7 +304,7 @@
 </ul>
 <p><strong>注：+=、-=、*=、/=、%=的优先级与简单的五则运算不同，他们的优先级仅仅只高于或且非！</strong>（或且非后面会讲到）</p>
 <p>那么我们就完成了五则运算的讲解。</p>
-<h4 id="二-大于小于等于，比较那个的运算"><a href="#二-大于小于等于，比较那个的运算" class="headerlink" title="二.大于小于等于，比较那个的运算"></a>二.大于小于等于，比较那个的运算</h4><p><strong>逻辑运算的优先级是低于五则运算的。</strong></p>
+<h3 id="二-大于小于等于，比较那个的运算"><a href="#二-大于小于等于，比较那个的运算" class="headerlink" title="二.大于小于等于，比较那个的运算"></a>二.大于小于等于，比较那个的运算</h3><p><strong>逻辑运算的优先级是低于五则运算的。</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">1</span>&gt;<span class="hljs-number">5</span>;<br><span class="hljs-number">42</span>&lt;c;<br><span class="hljs-number">5</span>!=<span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
 
 <p>这一块儿只有两点需要讲：</p>
@@ -318,7 +318,7 @@
 <p><strong>显然这是一种错误写法，而且好多好多来问我题的同学都犯过这样的错误。</strong>这里白泽统一讲一下原因：</p>
 <p>我们可以带入三个数，令a=6，b=5，c=4，然后自己脑补出这个式子的运算过程：由于式子里所有运算符的优先级相同，因此计算机会从左往右地依次计算。先比较a和b的大小，即判断6&gt;5，得出这个式子的值为1；然后再判断a&gt;b这个式子的值与c之间的大小关系，即判断1&gt;4，得出整个式子的结果为0。</p>
 <p>我想这或许与你的逻辑有所不同。那么我们应该怎么按照自己的想法来判断多个数之间的大小关系呢？继续往下一章看叭~</p>
-<h4 id="三-或且非，相信你永远可靠的逻辑"><a href="#三-或且非，相信你永远可靠的逻辑" class="headerlink" title="三.或且非，相信你永远可靠的逻辑"></a>三.或且非，相信你永远可靠的逻辑</h4><p>接下来让我隆重介绍，怎样正确地表示三个数之间的关系：</p>
+<h3 id="三-或且非，相信你永远可靠的逻辑"><a href="#三-或且非，相信你永远可靠的逻辑" class="headerlink" title="三.或且非，相信你永远可靠的逻辑"></a>三.或且非，相信你永远可靠的逻辑</h3><p>接下来让我隆重介绍，怎样正确地表示三个数之间的关系：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">a&gt;b &amp;&amp; b&gt;c<br></code></pre></td></tr></table></figure>
 
 <p>这个式子的含义是：a&gt;b而且b&gt;c。相信你肯定已经明白——<strong>在今天介绍的几种运算符里，或且非是优先级最低的。</strong></p>
