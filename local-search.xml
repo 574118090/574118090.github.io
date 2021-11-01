@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>白泽的C语言入门（六） 排序要从冒泡抓起</title>
+    <link href="/2021/11/01/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89/"/>
+    <url>/2021/11/01/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~</p><p>笔墨愚钝，不知所言，乞谅。</p><p>注：本系列所有文本除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0 协议</a> ，转载请联系作者、注明出处！</p><p align="right">——爱你们的白泽</p></blockquote><span id="more"></span><h3 id="零-啥是排序"><a href="#零-啥是排序" class="headerlink" title="零.啥是排序"></a>零.啥是排序</h3><p>今天的零非常少，但是一非常多。</p><p>对于零，我们只讲排序的定义：通过一定的方式，将一系列数据，按照一定的顺序排列起来，称作排序。对于单独的一个数组，我们在大一接触到的对其排序，就是将之从小到大或从大到小排列起来。</p><p>对于字符串的排序，就是将之按ASCII码的大小升序或降序地排列起来。</p><h3 id="一-冒个泡"><a href="#一-冒个泡" class="headerlink" title="一.冒个泡"></a>一.冒个泡</h3><h4 id="1-基本"><a href="#1-基本" class="headerlink" title="1.基本"></a>1.基本</h4><p>冒泡排序的基本思想就是，将数组中的相邻元素进行两两比较，若进行升序排序（从小到大排），就按照小元素在前的原则确定两个元素是否需要交换位置。这样执行完第一轮之后，最大的元素就被放到了整个数组的末尾。</p><p>完成一轮之后，我们可以再进行第二轮比较，这样第二大的元素就被放到了整个数组倒数第二个的位置。以此类推，我们进行n次这样的比较之后，整个数组就按照从小到大的顺序排列好了。</p><h4 id="2-演示"><a href="#2-演示" class="headerlink" title="2.演示"></a>2.演示</h4><p>假设我们现在有一列没有排序的数组：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">5</span>  <span class="hljs-number">1</span>  <span class="hljs-number">9</span>  <span class="hljs-number">8</span>  <span class="hljs-number">3</span>  <span class="hljs-number">6</span>  <span class="hljs-number">4</span>  <span class="hljs-number">7</span><br></code></pre></td></tr></table></figure><p>我们先进行第一轮排序，对数组中的两个数两两比较：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">9</span>  <span class="hljs-number">8</span>  <span class="hljs-number">3</span>  <span class="hljs-number">6</span>  <span class="hljs-number">4</span>  <span class="hljs-number">7</span><span class="hljs-comment">//比较5和1，发现5比1大，于是交换5和1</span><br><span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">9</span>  <span class="hljs-number">8</span>  <span class="hljs-number">3</span>  <span class="hljs-number">6</span>  <span class="hljs-number">4</span>  <span class="hljs-number">7</span><span class="hljs-comment">//比较5和9，发现5比9小，于是不交换顺序</span><br><span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">8</span>  <span class="hljs-number">9</span>  <span class="hljs-number">3</span>  <span class="hljs-number">6</span>  <span class="hljs-number">4</span>  <span class="hljs-number">7</span><span class="hljs-comment">//比较9和8，发现9比8大，于是交换9和8</span><br><span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">8</span>  <span class="hljs-number">3</span>  <span class="hljs-number">9</span>  <span class="hljs-number">6</span>  <span class="hljs-number">4</span>  <span class="hljs-number">7</span><span class="hljs-comment">//比较9和3，发现9比3大，于是交换9和3</span><br><span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">8</span>  <span class="hljs-number">3</span>  <span class="hljs-number">6</span>  <span class="hljs-number">9</span>  <span class="hljs-number">4</span>  <span class="hljs-number">7</span><span class="hljs-comment">//比较9和6，发现9比6大，于是交换9和6</span><br><span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">8</span>  <span class="hljs-number">3</span>  <span class="hljs-number">6</span>  <span class="hljs-number">4</span>  <span class="hljs-number">9</span>  <span class="hljs-number">7</span><span class="hljs-comment">//比较9和4，发现9比4大，于是交换9和4</span><br><span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">8</span>  <span class="hljs-number">3</span>  <span class="hljs-number">6</span>  <span class="hljs-number">4</span>  <span class="hljs-number">7</span>  <span class="hljs-number">9</span><span class="hljs-comment">//比较9和7，发现9比7大，于是交换9和7</span><br></code></pre></td></tr></table></figure><p>这样，数组中的最大数，9，就排到了这个数组的最后。之后，我们再对除了9以外的其它数作排序，就可以把8放到倒数第二个的位置。再继续往后进行下去，直到第n次结束，整个数组就排序完毕了。</p><h4 id="3-实现"><a href="#3-实现" class="headerlink" title="3.实现"></a>3.实现</h4><p>那么现在我们来实现代码。</p><p>首先我们需要定义数组和其长度n，并将其读入。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-keyword">int</span> n,a[<span class="hljs-number">114514</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">int</span> i;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a[i]);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>然后，按照冒泡排序的思想，我们一共要进行n轮两两比较的操作，每次要比较的数组长度是<strong>数组长度-轮数</strong>，于是我们写下这样的二重循环：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-keyword">int</span> n,a[<span class="hljs-number">114514</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">int</span> i,j;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a[i]);<br>    <br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;n-i;j++)&#123;<span class="hljs-comment">//将j设为1，是为了每次比较a[j]和a[j-1]；当然，也可以将j设为0，然后每次比较a[j]和a[j+1]。</span><br>            <br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>接着我们实现对两个数的两两比较。当前面一个数比后面一个数大的时候，我们交换两个数的位置，否则什么都不做。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-keyword">int</span> n,a[<span class="hljs-number">114514</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">int</span> i,j;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a[i]);<br>    <br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;n-i;j++)&#123;<span class="hljs-comment">//将j设为1，是为了每次比较a[j]和a[j-1]；当然，也可以将j设为0，然后每次比较a[j]和a[j+1]。</span><br>            <span class="hljs-keyword">if</span>(a[j<span class="hljs-number">-1</span>]&gt;a[j])&#123;<br>                <span class="hljs-keyword">int</span> temp=a[j<span class="hljs-number">-1</span>];<br>                a[j<span class="hljs-number">-1</span>]=a[j];<br>                a[j]=temp;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>最后我们将之输出出来。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-keyword">int</span> n,a[<span class="hljs-number">114514</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">int</span> i,j;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a[i]);<br>    <br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;n-i;j++)&#123;<span class="hljs-comment">//将j设为1，是为了每次比较a[j]和a[j-1]；当然，也可以将j设为0，然后每次比较a[j]和a[j+1]。</span><br>            <span class="hljs-keyword">if</span>(a[j<span class="hljs-number">-1</span>]&gt;a[j])&#123;<br>                <span class="hljs-keyword">int</span> temp=a[j<span class="hljs-number">-1</span>];<br>                a[j<span class="hljs-number">-1</span>]=a[j];<br>                a[j]=temp;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,a[i]);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>这样就完成了冒泡排序。</p><h3 id="二-选择排序"><a href="#二-选择排序" class="headerlink" title="二.选择排序"></a>二.选择排序</h3><p>又复杂效率又低，建议不学这个。</p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？月考他🐎呢？</p><p>还要告知家长学生在校学习水平？我能不能告知领导的家长领导在校的行政水平啊？？？</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>程序入门</tag>
+      
+      <tag>C语言</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>白泽的C语言入门（五） 比起变量我还是更喜欢数组呢</title>
     <link href="/2021/10/30/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89/"/>
     <url>/2021/10/30/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89/</url>
@@ -99,9 +126,9 @@
     
     <tags>
       
-      <tag>贪心</tag>
-      
       <tag>CodeForces</tag>
+      
+      <tag>贪心</tag>
       
       <tag>准备ICPC2021</tag>
       
@@ -541,11 +568,11 @@
     
     <tags>
       
-      <tag>贪心</tag>
-      
       <tag>CodeForces</tag>
       
       <tag>恢复OI实力</tag>
+      
+      <tag>贪心</tag>
       
     </tags>
     
@@ -595,11 +622,11 @@
     
     <tags>
       
+      <tag>模拟</tag>
+      
       <tag>CodeForces</tag>
       
       <tag>恢复OI实力</tag>
-      
-      <tag>模拟</tag>
       
     </tags>
     
@@ -624,11 +651,11 @@
     
     <tags>
       
+      <tag>模拟</tag>
+      
       <tag>CodeForces</tag>
       
       <tag>恢复OI实力</tag>
-      
-      <tag>模拟</tag>
       
     </tags>
     
@@ -682,11 +709,11 @@
     
     <tags>
       
+      <tag>模拟</tag>
+      
       <tag>CodeForces</tag>
       
       <tag>恢复OI实力</tag>
-      
-      <tag>模拟</tag>
       
     </tags>
     
@@ -711,11 +738,11 @@
     
     <tags>
       
-      <tag>贪心</tag>
-      
       <tag>CodeForces</tag>
       
       <tag>恢复OI实力</tag>
+      
+      <tag>贪心</tag>
       
     </tags>
     
@@ -939,9 +966,9 @@
     
     <tags>
       
-      <tag>恢复OI实力</tag>
-      
       <tag>模拟</tag>
+      
+      <tag>恢复OI实力</tag>
       
       <tag>NOIP真题</tag>
       
