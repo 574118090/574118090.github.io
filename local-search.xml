@@ -4,6 +4,62 @@
   
   
   <entry>
+    <title>画一点东西——蛇蝎之心</title>
+    <link href="/2022/03/04/%E7%94%BB%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF%E2%80%94%E2%80%94%E8%9B%87%E8%9D%8E%E4%B9%8B%E5%BF%83/"/>
+    <url>/2022/03/04/%E7%94%BB%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF%E2%80%94%E2%80%94%E8%9B%87%E8%9D%8E%E4%B9%8B%E5%BF%83/</url>
+    
+    <content type="html"><![CDATA[<p>白泽的第一张高完成度插画！同步发在了GGAC，希望可以越变越好叭~</p><blockquote><p>“陛下，欢迎您的归来！您将被致以最崇高的敬意，您比战场上任何士兵都更英勇善战，您已经为自己的名誉和法兰西家族增光添辉。您的家族将被永世牢记，您将长久地统治我们的王国，直到您的死。”</p></blockquote><p><img src="C:\Users\57411\AppData\Roaming\Typora\typora-user-images\image-20220304112311743.png" alt="image-20220304112311743"></p><p><img src="C:\Users\57411\AppData\Roaming\Typora\typora-user-images\image-20220304112459638.png" alt="image-20220304112459638"></p><p><img src="C:\Users\57411\AppData\Roaming\Typora\typora-user-images\image-20220304112508127.png" alt="image-20220304112508127"></p><p><img src="C:\Users\57411\AppData\Roaming\Typora\typora-user-images\image-20220304112516689.png" alt="image-20220304112516689"></p><p><img src="C:\Users\57411\AppData\Roaming\Typora\typora-user-images\image-20220304112706239.png" alt="image-20220304112706239"></p><p><img src="C:\Users\57411\AppData\Roaming\Typora\typora-user-images\image-20220304112748659.png" alt="image-20220304112748659"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>美术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>画画</tag>
+      
+      <tag>中世纪</tag>
+      
+      <tag>厚涂</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>计算几何入门</title>
+    <link href="/2022/03/04/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/"/>
+    <url>/2022/03/04/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>完成一点小心思小想法的添砖加瓦。</p><p align=right>——白泽</p></blockquote><h3 id="一-二维计算集合"><a href="#一-二维计算集合" class="headerlink" title="一.二维计算集合"></a>一.二维计算集合</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul><li><p>点积</p><p>设有点$A$，$B$位置已知，$C$位置未知，有点积：<br>$$<br>\vec{AB}·\vec{AC}=|AB|*|AC|*cos\theta<br>$$<br>若点积为正，说明$C$点落在第一、四象限，否则说明C落在第二、三象限。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">dotProduct=x1*y2-x2*y1<br></code></pre></td></tr></table></figure></li><li><p>叉积</p><p>有叉积：<br>$$<br>\vec{AB}×\vec{AC}=|AB|*|AC|*sin\theta<br>$$<br>若叉积为正，说明C点落在第一、二象限，否则说明C落在第三、四象限。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">crossProduct=x1*x2+y1*y2<br></code></pre></td></tr></table></figure></li></ul><p><em>一般情况下只使用叉积判断方向，将点的位置确定到半平面。</em></p><h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><ul><li><p>投影</p><p>设$C$在直线$AB$上投影的点为$O$，则$C$到该直线的距离即为$CO$。<br>$$<br>|AO|=\frac{\vec{AC}<em>\vec{AB}}{|AB|}<br>$$<br>此时可知，点$O$的坐标为：<br>$$<br>A+(\vec{AB})unit</em>|AO|<br>$$<br>等等</p><p><strong>所以计算几何的过程就是用点积和叉积一步一步搭积木的过程。</strong></p></li></ul><h4 id="两种流派"><a href="#两种流派" class="headerlink" title="两种流派"></a>两种流派</h4><ul><li><p>旋转平移流（OI常用）</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">point <span class="hljs-title">turnPoint</span><span class="hljs-params">(<span class="hljs-keyword">double</span> k1)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> (point)&#123;x*<span class="hljs-built_in">cos</span>(k1)-y*<span class="hljs-built_in">sin</span>(k1),x*<span class="hljs-built_in">sin</span>(k1)+y*<span class="hljs-built_in">cos</span>(k1)&#125;;<br>&#125;<br><span class="hljs-comment">//将一个点(x,y)绕着原点逆时针旋转k1（弧度制）后的坐标。</span><br></code></pre></td></tr></table></figure><p><em>在精度要求不是那么高时，计算出现NAN，可以将所有点旋转一个随机角度，使得运算不出错。</em></p></li><li><p>板子流（ACM常用）</p></li></ul><h4 id="常见元素"><a href="#常见元素" class="headerlink" title="常见元素"></a>常见元素</h4><ul><li>点（坐标）</li><li>线（两个点，带方向）</li><li>圆（点，半径）</li></ul><h4 id="单元操作"><a href="#单元操作" class="headerlink" title="单元操作"></a>单元操作</h4><ul><li>点到直线的投影</li><li>直线/圆 和直线/圆 的交点</li><li>点/圆 到 圆 的切线</li><li>点和多边形的位置关系</li></ul><h4 id="凸包快速操作"><a href="#凸包快速操作" class="headerlink" title="凸包快速操作"></a>凸包快速操作</h4><ul><li><p>凸包的等价定义</p><p>若有$\alpha,\beta \in a,则 x\beta+(1-x)\alpha \in a$</p></li><li><p>求凸包</p></li><li><p>旋转卡壳</p></li><li><p>点到凸包的切线（判断位置关系）</p></li><li><p>直线和凸包的交点</p></li><li><p><strong>闵可夫斯基和</strong></p><p>设平面上有凸包a,b，将两个凸包看作两个点集，则有：<br>$$<br>a+b={\alpha+\beta | \alpha \in a,\beta \in b }<br>$$<br>即，在两个凸包中各任取一个点，把它们坐标加起来，放在一个集合里，得到一个新的集合。</p><ul><li>两个凸包的和依然是凸包</li><li>一条出现在两个凸包中的任意一条边，都会出现在他们的闵可夫斯基和凸包上</li><li>两凸包中各取$x,y$的最小值，$x_1+x_2=x_{min}$，$y_1+y_2=y_{min}$，即可唯一确定一个凸包</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>准备ICPC2022昆明</tag>
+      
+      <tag>计算几何</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>白泽的C语言入门（七） 我可太懂函数了</title>
     <link href="/2021/11/15/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89/"/>
     <url>/2021/11/15/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89/</url>
