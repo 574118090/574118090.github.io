@@ -19,8 +19,8 @@
   <meta name="description" content="
 众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~
 笔墨愚钝，不知所言，乞谅。
-注：本系列所有文本除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请联系作者、注明出处！
-——爱你们">
+——爱你们的白泽
+">
   <meta name="author" content="想变成一只白泽">
   <meta name="keywords" content="">
   
@@ -204,7 +204,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.3k 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      26
        分钟
     </span>
   
@@ -250,7 +250,6 @@
               <blockquote>
 <p>众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~</p>
 <p>笔墨愚钝，不知所言，乞谅。</p>
-<p>注：本系列所有文本除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0 协议</a> ，转载请联系作者、注明出处！</p>
 <p align="right">——爱你们的白泽</p>
 </blockquote>
 <span id="more"></span>
@@ -272,8 +271,24 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">X</span>();<br></code></pre></td></tr></table></figure>
 
 <p>这样就能在你需要的地方使用这个工具包了。</p>
-<p>具体咋用请继续往下看哦 </p>
-<h3 id="一-RE-从零开始的函数定义调用"><a href="#一-RE-从零开始的函数定义调用" class="headerlink" title="一.RE:从零开始的函数定义调用"></a>一.RE:从零开始的函数定义调用</h3><h4 id="1-怀胎十月，生出一个函数"><a href="#1-怀胎十月，生出一个函数" class="headerlink" title="1.怀胎十月，生出一个函数"></a>1.怀胎十月，生出一个函数</h4><p>就像我们刚刚谈到的，在main函数外，我们这样定义一个函数：</p>
+<h3 id="一-指针？它指南么？"><a href="#一-指针？它指南么？" class="headerlink" title="一.指针？它指南么？"></a>一.指针？它指南么？</h3><h4 id="1-啥是指针"><a href="#1-啥是指针" class="headerlink" title="1.啥是指针"></a>1.啥是指针</h4><p> 我们曾经用“箱子”的概念谈到过数组与变量的关系——数组是一个装有多个变量的箱子，n维数组则是一个装有n-1维数组的箱子。此时，我想再让我们对于“箱子”的概念变得丰满一点——一个箱子被创造出来后，我们总要将其放在一个地方，也许是地上，也许是桌上，但无论怎样，<strong>我们总能通过描述一个箱子的精确位置来定位它。</strong></p>
+<p>同样的，我们的“数组”，“变量”也会被放到计算机中的某个地方；我们将存放他们的地方统称为<strong>地址</strong>，而每一个地址都有自己的编号，<strong>是一个十六进制数</strong>，一般表示为0xXXXXXXXX，其中X用0<del>9、A</del>F代替。我们这样表示一个变量的地址：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a=<span class="hljs-number">5</span>;<span class="hljs-comment">//这是一个变量</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p&quot;</span>,&amp;a);<span class="hljs-comment">//&amp;a表示a这个变量的地址，而&amp;a则表示a这个变量的地址</span><br><span class="hljs-comment">//这两行代码组合在一起，会输出变量a的地址</span><br></code></pre></td></tr></table></figure>
+
+<p>相应的，方便起见，我们可以用一个东西来记录地址，这就是指针了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a=<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> *p;<span class="hljs-comment">//用*X来定义一个名为X的，指向int类型的指针。</span><br>p=&amp;a;<span class="hljs-comment">//这样来使指针指向变量a。</span><br>*p=a;<span class="hljs-comment">//这样同样可以使指针指向变量a。</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,*p);<span class="hljs-comment">//在除了定义外的其它地方，*X都代表这个指针X指向位置的具体的值</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p&quot;</span>,p);<span class="hljs-comment">//而p则代表这一个地址</span><br></code></pre></td></tr></table></figure>
+
+<p>这就是指针的使用方法。</p>
+<h4 id="2-再深一点…"><a href="#2-再深一点…" class="headerlink" title="2.再深一点…."></a>2.再深一点….</h4><p>当我们仔细观察变量和指针的定义方法时，就能发现，他们具有惊人的相似性。则到底是巧合，还是说他们之间具有某种联系呢？事实上，<strong>指针就是特殊的变量。</strong>基于这样的理论，我们便可以猜想，或许，可以定义一个指向指针的指针？</p>
+<p>就像这样。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a=<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> *p;<br>*p=a;<br><span class="hljs-keyword">int</span> **x;<br>**x=*p;<br></code></pre></td></tr></table></figure>
+
+<p>当然，这样做的意义在目前阶段的学习里意义不大，因此无需多想。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> <br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="二-RE-从零开始的函数定义调用"><a href="#二-RE-从零开始的函数定义调用" class="headerlink" title="二.RE:从零开始的函数定义调用"></a>二.RE:从零开始的函数定义调用</h3><h4 id="1-怀胎十月，生出一个函数"><a href="#1-怀胎十月，生出一个函数" class="headerlink" title="1.怀胎十月，生出一个函数"></a>1.怀胎十月，生出一个函数</h4><p>就像我们刚刚谈到的，在main函数外，我们这样定义一个函数：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">T <span class="hljs-title">X</span><span class="hljs-params">()</span></span>&#123;<br>    ...<br>    <span class="hljs-keyword">return</span> P;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>对于这么一个类型为T的名为X的函数，他会返回一个值，<strong>这个值的类型也是T</strong>。比方说：</p>
@@ -308,12 +323,13 @@
 <p>基于这个道理，我们还能推断出——不同的箱子里面，可以有同样名字的小玩意，就像这样：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> p;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> p;<br>&#125;<br><span class="hljs-comment">//这是合法的~</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="4-我还是想要回传函数的值"><a href="#4-我还是想要回传函数的值" class="headerlink" title="4.我还是想要回传函数的值"></a>4.我还是想要回传函数的值</h4><p>待更新ing…</p>
+<h4 id="4-我还是想要回传函数的值"><a href="#4-我还是想要回传函数的值" class="headerlink" title="4.我还是想要回传函数的值"></a>4.我还是想要回传函数的值</h4><p>说起来，有没有什么办法可以让我们把函数内的值传递给我们原来的参数呢？</p>
 <h4 id="5-永别了，牢笼！"><a href="#5-永别了，牢笼！" class="headerlink" title="5.永别了，牢笼！"></a>5.永别了，牢笼！</h4><p>那么有没有什么办法，可以让我们的某个变量、数组，可以被所有的函数共用呢？</p>
 <p>实际上是有的。我们只需要把变量定义在函数的外部，就像这样：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> x;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,x);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>函数a和函数main就都能使用变量x了~</p>
+<p>函数a和函数main就都能使用变量x了~这么做的好处在于，我们不需要再回传函数的值，而只需要定义全局变量就可以实现变量值在不同函数之间的传递了</p>
+<p>哎嘿</p>
 <p>对于这里的x，我们将这种定义在函数外部的变量称之为<strong>全局变量</strong>。对应的，我们把定义在函数内部的变量称之为<strong>局部变量</strong>。</p>
 <p>这样，对于任何一个变量、数组，我们都能在所有函数里使用了。</p>
 <blockquote>
