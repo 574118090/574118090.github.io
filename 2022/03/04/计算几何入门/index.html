@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      598 字
+      599 字
     </span>
   
 
@@ -250,15 +250,15 @@
 <h3 id="一-二维计算集合"><a href="#一-二维计算集合" class="headerlink" title="一.二维计算集合"></a>一.二维计算集合</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
 <li><p>点积</p>
 <p>设有点$A$，$B$位置已知，$C$位置未知，有点积：<br>$$<br>\vec{AB}·\vec{AC}=|AB|*|AC|*cos\theta<br>$$<br>若点积为正，说明$C$点落在第一、四象限，否则说明C落在第二、三象限。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">dotProduct=x1*y2-x2*y1<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">dotProduct=x1*x2+y1*y2<br></code></pre></td></tr></table></figure></li>
 <li><p>叉积</p>
 <p>有叉积：<br>$$<br>\vec{AB}×\vec{AC}=|AB|*|AC|*sin\theta<br>$$<br>若叉积为正，说明C点落在第一、二象限，否则说明C落在第三、四象限。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">crossProduct=x1*x2+y1*y2<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">crossProduct=x1*y2-x2*y1<br></code></pre></td></tr></table></figure></li>
 </ul>
 <p><em>一般情况下只使用叉积判断方向，将点的位置确定到半平面。</em></p>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><ul>
 <li><p>投影</p>
-<p>设$C$在直线$AB$上投影的点为$O$，则$C$到该直线的距离即为$CO$。<br>$$<br>|AO|=\frac{\vec{AC}<em>\vec{AB}}{|AB|}<br>$$<br>此时可知，点$O$的坐标为：<br>$$<br>A+(\vec{AB})unit</em>|AO|<br>$$<br>等等</p>
+<p>设$C$在直线$AB$上投影的点为$O$，则$C$到该直线的距离即为$CO$。<br>$$<br>|AO|=\frac{\vec{AC}·x\vec{AB}}{|AB|}<br>$$<br>此时可知，点$O$的坐标为：<br>$$<br>A+(\vec{AB})unit*|AO|<br>$$<br>等等</p>
 <p><strong>所以计算几何的过程就是用点积和叉积一步一步搭积木的过程。</strong></p>
 </li>
 </ul>
@@ -338,6 +338,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/04/16/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E6%A8%A1%E6%9D%BF2022-4-16/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计算几何模板2022.4.16</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
