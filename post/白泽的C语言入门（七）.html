@@ -1,0 +1,650 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/my_blog.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="
+众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~
+笔墨愚钝，不知所言，乞谅。
+——爱你们的白泽
+">
+  <meta name="author" content="想变成一只白泽">
+  <meta name="keywords" content="">
+  
+  <title>白泽的C语言入门（七） 我可太懂函数了 - 追梦的陈~</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"tridiamond.tech","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="追梦的陈~" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>追梦的陈</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="白泽的C语言入门（七） 我可太懂函数了">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-15 10:10" pubdate>
+        2021年11月15日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">白泽的C语言入门（七） 我可太懂函数了</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>众所周知，小红书使用的编程标准已经太老太老了，很容易在1202年的编译软件/在线网站上生发一些奇奇怪怪的错误。于是乎为了让大伙不要在C语言/程序设计基础课上被谭浩强带出高血压来，白泽决定借着以前带少儿编程班的经验，给大伙写一部同龄人能看的程序设计入门教程~</p>
+<p>笔墨愚钝，不知所言，乞谅。</p>
+<p align="right">——爱你们的白泽</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="零-模块化编程的思想"><a href="#零-模块化编程的思想" class="headerlink" title="零.模块化编程的思想"></a>零.模块化编程的思想</h3><p>在写代码的时候，我们经常面对这样的问题——如果某一个功能，我们需要进行多次一模一样的操作，代码就会变得十分冗长。那有没有什么办法让我们的代码变得简洁一点呢？</p>
+<p>举个例子，现在有这么一道题：给定n个数，将他们从大到小排序，然后输出数列正中间的那个数，并删掉这个数。然后再从小到大排序，再输出数列正中间的数，并删掉这个数；再从大到小排序…一直重复直到数列中所有数都被删除完为止。</p>
+<p>对于这个题，我们需要n次交替进行从大到小排序，并输出中间那个值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n/<span class="hljs-number">2</span>;i++)&#123;<br>    从小到大排序;<br>    输出中间的值;<br>    从大到小排序;<br>    输出中间的值;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>看到这里，脑补出for循环里冗长复杂的代码，白泽头都大了QAQ</p>
+<p>那有没有办法让for循环内部变得简单一点，让代码分成几块，来让我们看得更加清晰呢？</p>
+<p>这个时候就要用到函数了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">void</span> 从小到大排序()&#123;<br>    ...<br>&#125;<br><span class="hljs-type">void</span> 从大到小排序()&#123;<br>    ...<br>&#125;<br><span class="hljs-type">void</span> 输出中间值()&#123;<br>    ...<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n/<span class="hljs-number">2</span>;i++)&#123;<br>        从小到大排序();<br>        输出中间值();<br>        从大到小排序();<br>        输出中间值();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>是的，我们在main的外部定义的形如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">T <span class="hljs-title">X</span><span class="hljs-params">()</span></span>&#123;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>的东西，就是一个<strong>T类型的、名为X的函数</strong>。对于这么一个函数，我们需要使用它时，就：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">X</span>();<br></code></pre></td></tr></table></figure>
+
+<p>这样就能在你需要的地方使用这个工具包了。</p>
+<h3 id="一-指针？它指南么？"><a href="#一-指针？它指南么？" class="headerlink" title="一.指针？它指南么？"></a>一.指针？它指南么？</h3><h4 id="1-啥是指针"><a href="#1-啥是指针" class="headerlink" title="1.啥是指针"></a>1.啥是指针</h4><p> 我们曾经用“箱子”的概念谈到过数组与变量的关系——数组是一个装有多个变量的箱子，n维数组则是一个装有n-1维数组的箱子。此时，我想再让我们对于“箱子”的概念变得丰满一点——一个箱子被创造出来后，我们总要将其放在一个地方，也许是地上，也许是桌上，但无论怎样，<strong>我们总能通过描述一个箱子的精确位置来定位它。</strong></p>
+<p>同样的，我们的“数组”，“变量”也会被放到计算机中的某个地方；我们将存放他们的地方统称为<strong>地址</strong>，而每一个地址都有自己的编号，<strong>是一个十六进制数</strong>，一般表示为0xXXXXXXXX，其中X用0<del>9、A</del>F代替。我们这样表示一个变量的地址：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> a=<span class="hljs-number">5</span>;<span class="hljs-comment">//这是一个变量</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p&quot;</span>,&amp;a);<span class="hljs-comment">//&amp;a表示a这个变量的地址，而&amp;a则表示a这个变量的地址</span><br><span class="hljs-comment">//这两行代码组合在一起，会输出变量a的地址</span><br></code></pre></td></tr></table></figure>
+
+<p>相应的，方便起见，我们可以用一个东西来记录地址，这就是指针了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> a=<span class="hljs-number">5</span>;<br><span class="hljs-type">int</span> *p;<span class="hljs-comment">//用*X来定义一个名为X的，指向int类型的指针。</span><br>p=&amp;a;<span class="hljs-comment">//这样来使指针指向变量a。</span><br>*p=a;<span class="hljs-comment">//这样同样可以使指针指向变量a。</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,*p);<span class="hljs-comment">//在除了定义外的其它地方，*X都代表这个指针X指向位置的具体的值</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p&quot;</span>,p);<span class="hljs-comment">//而p则代表这一个地址</span><br></code></pre></td></tr></table></figure>
+
+<p>这就是指针的使用方法。</p>
+<h4 id="2-再深一点…"><a href="#2-再深一点…" class="headerlink" title="2.再深一点…."></a>2.再深一点….</h4><p>当我们仔细观察变量和指针的定义方法时，就能发现，他们具有惊人的相似性。则到底是巧合，还是说他们之间具有某种联系呢？事实上，<strong>指针就是特殊的变量。</strong>基于这样的理论，我们便可以猜想，或许，可以定义一个指向指针的指针？</p>
+<p>就像这样。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> a=<span class="hljs-number">5</span>;<br><span class="hljs-type">int</span> *p;<br>*p=a;<br><span class="hljs-type">int</span> **x;<br>**x=*p;<br></code></pre></td></tr></table></figure>
+
+<p>当然，这样做的意义在目前阶段的学习里意义不大，因此无需多想。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> <br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="二-RE-从零开始的函数定义调用"><a href="#二-RE-从零开始的函数定义调用" class="headerlink" title="二.RE:从零开始的函数定义调用"></a>二.RE:从零开始的函数定义调用</h3><h4 id="1-怀胎十月，生出一个函数"><a href="#1-怀胎十月，生出一个函数" class="headerlink" title="1.怀胎十月，生出一个函数"></a>1.怀胎十月，生出一个函数</h4><p>就像我们刚刚谈到的，在main函数外，我们这样定义一个函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">T <span class="hljs-title">X</span><span class="hljs-params">()</span></span>&#123;<br>    ...<br>    <span class="hljs-keyword">return</span> P;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于这么一个类型为T的名为X的函数，他会返回一个值，<strong>这个值的类型也是T</strong>。比方说：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">float</span> a;<br>    ...<br>    <span class="hljs-keyword">return</span> a;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个函数中，虽然变量a是一个float类型的变量，但是由于函数本身是int类型的，因此其返回值仍然是int类型，因此这里计算机会自动地把a先转换为int类型，再将其返回。</p>
+<p>那么对于一个返回值，我们应该怎么用呢？</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> p=<span class="hljs-number">5</span>;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> q=<span class="hljs-built_in">test</span>();<br>    <span class="hljs-comment">//这是q的值为5</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>没错，返回值就是函数的值~</p>
+<p>当然，如果咱们不需要返回值，那么我们可以让函数的类型为void，即空类型，就像这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">p</span><span class="hljs-params">()</span></span>&#123;<br>    <br>    <span class="hljs-keyword">return</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样我们就定义了一个没有返回值的函数p。那么当我们需要它结束的时候，直接输入return;即可。</p>
+<p>不过对于我们的函数，相较于数学中的函数，是不是还差点什么呢？举个例子吧：<br>$$<br>F(x)=e^x+bx+1<br>$$<br>很显然，咱们的函数里面没有参数嘛！</p>
+<p>那应该怎么办呢？聪明的你可能已经回忆起来，我们在书写max函数的时候，曾经这么写过：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(a&gt;b)<span class="hljs-keyword">return</span> a;<br>    <span class="hljs-keyword">return</span> b;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>yes，对于小括号里边的变量，就是我们可以使用的参数了~用专业一点的话来说，小括号里的a和b是这个函数的<strong>形式参数，简称为形参</strong>。与之对应的，我们把其他地方定义的变量称之为实际参数，也就是<strong>实参</strong>。</p>
+<p>那么对于带有参数的函数，我们可以这么使用它：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(a&gt;b)<span class="hljs-keyword">return</span> a;<br>    <span class="hljs-keyword">return</span> b;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,<span class="hljs-built_in">max</span>(<span class="hljs-number">5</span>,<span class="hljs-number">6</span>));<span class="hljs-comment">//没错，由于函数会返回一个值，我们可以认为函数本身也是一个值。</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这就是函数的初步使用了。</p>
+<h4 id="3-我只是想在函数里使用数组而已嘛"><a href="#3-我只是想在函数里使用数组而已嘛" class="headerlink" title="3.我只是想在函数里使用数组而已嘛"></a>3.我只是想在函数里使用数组而已嘛</h4><p>类比函数中以变量作为参数，我们也可以用类似的方法，让我们的函数得到一个数组作为形式参数，就像这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-type">int</span> b[])</span></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> q[]=&#123;<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">9</span>,<span class="hljs-number">1</span>,<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-built_in">a</span>(q);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>就像这样，我们就可以在函数与函数之间传递数组了~</p>
+<h4 id="3-有关变量的小秘密"><a href="#3-有关变量的小秘密" class="headerlink" title="3.有关变量的小秘密"></a>3.有关变量的小秘密</h4><p>在很早很早之前，白泽给大家讲过，在一个函数内声明的变量只能这一个函数里使用。为啥当时会强调这个呢？因为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">hello_world</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-type">int</span> p=<span class="hljs-number">123456</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,p);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这是不合法的。我们继续用箱子的做比喻——我们可以又把每一个函数都比作一个大箱子，里面装了好多好多好多东西，包括但不限于各种小箱子、各种纸条…和其它小玩意。那么对于每个箱子内的变量，不管怎么翻其它箱子，你都找不着它，不是么？</p>
+<p>基于这个道理，我们还能推断出——不同的箱子里面，可以有同样名字的小玩意，就像这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> p;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> p;<br>&#125;<br><span class="hljs-comment">//这是合法的~</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="4-我还是想要回传函数的值"><a href="#4-我还是想要回传函数的值" class="headerlink" title="4.我还是想要回传函数的值"></a>4.我还是想要回传函数的值</h4><p>说起来，有没有什么办法可以让我们把函数内的值传递给我们原来的参数呢？</p>
+<h4 id="5-永别了，牢笼！"><a href="#5-永别了，牢笼！" class="headerlink" title="5.永别了，牢笼！"></a>5.永别了，牢笼！</h4><p>那么有没有什么办法，可以让我们的某个变量、数组，可以被所有的函数共用呢？</p>
+<p>实际上是有的。我们只需要把变量定义在函数的外部，就像这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> x;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,x);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>函数a和函数main就都能使用变量x了~这么做的好处在于，我们不需要再回传函数的值，而只需要定义全局变量就可以实现变量值在不同函数之间的传递了</p>
+<p>哎嘿</p>
+<p>对于这里的x，我们将这种定义在函数外部的变量称之为<strong>全局变量</strong>。对应的，我们把定义在函数内部的变量称之为<strong>局部变量</strong>。</p>
+<p>这样，对于任何一个变量、数组，我们都能在所有函数里使用了。</p>
+<blockquote>
+<p>永别了，牢笼！</p>
+</blockquote>
+<h3 id="二-进行一点思维上的升华"><a href="#二-进行一点思维上的升华" class="headerlink" title="二.进行一点思维上的升华"></a>二.进行一点思维上的升华</h3><p>待更新ing…</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>待更新ing…</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%A8%8B%E5%BA%8F%E5%85%A5%E9%97%A8/">程序入门</a>
+                    
+                      <a class="hover-with-bg" href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/%E7%99%BD%E6%B3%BD%E7%9A%84C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89.html">
+                        <span class="hidden-mobile">白泽的C语言入门（六） 排序要从冒泡抓起</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"a8v0m2SwR8k3EiHstiumUlat-gzGzoHsz","appKey":"lVlS0rTg46LhgPOAIcNL7Oyb","placeholder":"说点什么","path":"window.location.pathname","avatar":"retro","meta":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <p align="center" style="font-size:12px;margin-top:50px;">如果远方有战争，我应该掩耳，或是坐起来，惭愧地倾听？应该掩鼻，或该深呼吸，难闻的焦味？</p>
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        渝ICP备2021007428号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
