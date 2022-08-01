@@ -6,7 +6,7 @@
   <link href="https://tridiamond.tech/atom.xml" rel="self"/>
   
   <link href="https://tridiamond.tech/"/>
-  <updated>2022-08-01T12:18:55.151Z</updated>
+  <updated>2022-08-01T17:19:24.591Z</updated>
   <id>https://tridiamond.tech/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计蒜客-取石子游戏</title>
+    <link href="https://tridiamond.tech/post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E5%8F%96%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F.html"/>
+    <id>https://tridiamond.tech/post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E5%8F%96%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F.html</id>
+    <published>2022-08-01T16:24:20.000Z</published>
+    <updated>2022-08-01T17:19:24.591Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="题面描述"><a href="#题面描述" class="headerlink" title="题面描述"></a>题面描述</h3><p>蒜头君和花椰妹在玩一个游戏，他们在地上将 <em>n</em> 颗石子排成一排，编号为 1 到 <em>n</em>。开始时，蒜头君随机取出了 2 颗石子扔掉，假设蒜头君取出的 2 颗石子的编号为 <em>a</em>, <em>b</em>。游戏规则如下，蒜头君和花椰妹 2 人轮流取石子，每次取石子，假设某人取出的石子编号为 <em>i</em>，那么必须要找到一对 <em>j, k</em> 满足 <em>i=j−k</em> 或者<em>i=j+k</em> ，并且编号为 <em>j，k</em> 的石子已经被取出了，如果谁先不能取石子了，则视为输了。蒜头君比较绅士，让花椰妹先手。</p><h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行输入一个整数 t$(1 \le t \le 500)$，表示蒜头君和花椰妹进行了 <em>t</em> 局游戏。</p><p>对于每局游戏，输入 3 个整数 $n(2\le n \le 20000),a,b(1 \le a,b \le n)$，保证 a,b 不相等。</p><h3 id="样例数据"><a href="#样例数据" class="headerlink" title="样例数据"></a>样例数据</h3><h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>5<br>8 6 8<br>9 6 8<br>10 6 8<br>11 6 8<br>12 6 8</p></blockquote><h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>suantou<br>suantou<br>huaye<br>huaye<br>suantou</p></blockquote><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>做这个题要先用到这样一个结论：任何两数，重复大数减小数的过程，直至两数相等，此时这个相等的数就是两数的最大公因数。这就是求最大公因数的<strong>辗转相减法</strong>（曼彻斯特法或更相减损术）。具体证明如下：</p><ul><li>对于a，b的任意公因数d，有：</li></ul><p>$$<br>d|a,d|b<br>$$</p><ul><li>所以可以得到：</li></ul><p>$$<br>d|(a-b)<br>$$</p><ul><li>那我们不妨令$a=x\times d ,b=y\times d$，那么则有：</li></ul><p>$$<br>a-b=x\times d-y\times d=(x-y)\times d<br>$$</p><ul><li>又因为$d$是任意公因数，故$a,b$和$b,a-b$具有相同的公因数集合，对于$a,b-a$也同理，则他们的最大公因数相等。</li><li>证毕。</li></ul><p>回过头来看这个题。对于已有的石子$j,k$，我们可以取到其相减的石子编号$j-k$，而多次重复这一过程，就是在进行辗转相减，<strong>最后能取到的最小编号即为$j,k$的最大公因数</strong>。</p><p>再对于$j,k$而言，取得编号为$j-k,j+k$的石子之后，将其组合可以得到编号为$2j,2k$的石子，又由于初始时就有两颗石子，很容易得知：<strong>对于已存在的两颗石子，我们总能取到任何一颗的任意倍数。</strong></p><p>结合两个结论，可以得知，我们能取到的石子编号是两个数最大公因数的任意倍数。恰巧最初只有两颗石子，那我们只需取其最大公因数的倍数，统计能取到的数的个数即可。容易产生的误区是，结合$j+k,2j$会得到$3j+k$，有人会认为诸如此类的情况会被遗漏，但实际上这类情况仍然可以看作是两数最大公因数的某一倍数。</p><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;bits&#x2F;stdc++.h&gt;#define int long longusing namespace std;int gcd(int a, int b) &#123;while (b ^&#x3D; a ^&#x3D; b ^&#x3D; a %&#x3D; b);return a;&#125;signed main() &#123;int t;cin &gt;&gt; t;while (t--) &#123;int n, a, b;cin &gt;&gt; n &gt;&gt; a &gt;&gt; b;int ans &#x3D; 0, res &#x3D; gcd(a, b);for (register int i &#x3D; 1; i * res &lt;&#x3D; n; i++)ans++;        &#x2F;&#x2F;这里应该让ans&#x3D;ans-2，排除已经取走的两块石子，然而对于取模运算没有影响，故忽略这一步。if (!(ans % 2))puts(&quot;suantou&quot;);elseputs(&quot;huaye&quot;);&#125;return 0;&#125;</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;题面描述&quot;&gt;&lt;a href=&quot;#题面描述&quot; class=&quot;headerlink&quot; title=&quot;题面描述&quot;&gt;&lt;/a&gt;题面描述&lt;/h3&gt;&lt;p&gt;蒜头君和花椰妹在玩一个游戏，他们在地上将 &lt;em&gt;n&lt;/em&gt; 颗石子排成一排，编号为 1 到 &lt;em&gt;n&lt;/em&gt;。开始时</summary>
+      
+    
+    
+    
+    <category term="题解" scheme="https://tridiamond.tech/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="数论" scheme="https://tridiamond.tech/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="准备ICPC2022" scheme="https://tridiamond.tech/tags/%E5%87%86%E5%A4%87ICPC2022/"/>
+    
+    <category term="gcd" scheme="https://tridiamond.tech/tags/gcd/"/>
+    
+  </entry>
   
   <entry>
     <title>数论知识点整理</title>
@@ -488,31 +516,6 @@
     <category term="编程规范" scheme="https://tridiamond.tech/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
     
     <category term="前端" scheme="https://tridiamond.tech/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HDU5540-Secrete Master Plan</title>
-    <link href="https://tridiamond.tech/post/HDU5540.html"/>
-    <id>https://tridiamond.tech/post/HDU5540.html</id>
-    <published>2021-08-14T14:29:24.000Z</published>
-    <updated>2021-08-15T14:47:13.373Z</updated>
-    
-    <content type="html"><![CDATA[<p>对自己的代码水平产生了深深的怀疑。反反复复debug了不下十次，全是奇奇怪怪的小问题。</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>孔明给了张飞一个藏在口袋里的秘密计划。该计划指示如何在城墙的四角部署士兵。不幸的是，当费打开口袋时，他发现一张纸上只有四个点写的数字。这些数字形成了2×2矩阵，但费不知道拿纸的正确方向。真遗憾!</p><p>给出了两个秘密的主计划。第一个是大师的原始计划。第二个是费开的计划。孔明有很多口袋，可能给错了口袋。确定Fei是否收到了正确的口袋。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>模拟，让纸张旋转就完事了…</p><p>至于怎么旋转，看看样例就好了嘛~</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;bits&#x2F;stdc++.h&gt;#define int long long#define maxn 20using namespace std;inline int read() &#123;register char c &#x3D; getchar();register int f &#x3D; 1, _ &#x3D; 0;while (c &gt; &#39;9&#39; || c &lt; &#39;0&#39;)f &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? -1 : 1, c &#x3D; getchar();while (c &lt;&#x3D; &#39;9&#39; &amp;&amp; c &gt;&#x3D; &#39;0&#39;)_ &#x3D; (_ &lt;&lt; 3) + (_ &lt;&lt; 1) + (c ^ 48), c &#x3D; getchar();return _ * f;&#125;string a1, a2;void rotating() &#123;string temp &#x3D; a1;a1[0] &#x3D; temp[1];a1[1] &#x3D; temp[3];a1[2] &#x3D; temp[0];a1[3] &#x3D; temp[2];&#125;signed main() &#123;int t &#x3D; read();int temp &#x3D; 1;while (t--) &#123;a1 &#x3D; a2 &#x3D; &quot;1234&quot;;for (register int i &#x3D; 0; i &lt; 4; i++) &#123;a1[i] &#x3D; char(read() + &#39;0&#39;);&#125;for (register int i &#x3D; 0; i &lt; 4; i++) &#123;a2[i] &#x3D; char(read() + &#39;0&#39;);&#125;int flag &#x3D; 0;for (register int i &#x3D; 0; i &lt;&#x3D; 4; i++) &#123;if (a1 &#x3D;&#x3D; a2)flag &#x3D; 1;rotating();&#125;if (flag)cout &lt;&lt; &quot;Case #&quot; &lt;&lt; temp &lt;&lt; &quot;: &quot; &lt;&lt; &quot;POSSIBLE&quot; &lt;&lt; endl;elsecout &lt;&lt; &quot;Case #&quot; &lt;&lt; temp &lt;&lt; &quot;: &quot; &lt;&lt; &quot;IMPOSSIBLE&quot; &lt;&lt; endl;temp++;&#125;return 0;&#125;</code></pre>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;对自己的代码水平产生了深深的怀疑。反反复复debug了不下十次，全是奇奇怪怪的小问题。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="题解" scheme="https://tridiamond.tech/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="模拟" scheme="https://tridiamond.tech/tags/%E6%A8%A1%E6%8B%9F/"/>
-    
-    <category term="HDU" scheme="https://tridiamond.tech/tags/HDU/"/>
-    
-    <category term="准备CCPC2021" scheme="https://tridiamond.tech/tags/%E5%87%86%E5%A4%87CCPC2021/"/>
     
   </entry>
   
