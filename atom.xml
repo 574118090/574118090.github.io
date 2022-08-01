@@ -6,7 +6,7 @@
   <link href="https://tridiamond.tech/atom.xml" rel="self"/>
   
   <link href="https://tridiamond.tech/"/>
-  <updated>2022-08-01T12:15:39.741Z</updated>
+  <updated>2022-08-01T12:18:55.151Z</updated>
   <id>https://tridiamond.tech/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://tridiamond.tech/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.html"/>
     <id>https://tridiamond.tech/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.html</id>
     <published>2022-08-01T08:14:08.000Z</published>
-    <updated>2022-08-01T12:15:39.741Z</updated>
+    <updated>2022-08-01T12:18:55.151Z</updated>
     
     <content type="html"><![CDATA[<span id="more"></span><h2 id="一-初等数论"><a href="#一-初等数论" class="headerlink" title="一.初等数论"></a>一.初等数论</h2><h4 id="1-同余方程"><a href="#1-同余方程" class="headerlink" title="1.同余方程"></a>1.同余方程</h4><p>形如：<br>$$<br>a\equiv b(mod\ c)<br>$$<br>称之为a和b关于c的同余方程，即a和b分别除以c，余数相同。</p><h4 id="2-积性函数"><a href="#2-积性函数" class="headerlink" title="2.积性函数"></a>2.积性函数</h4><p>积性函数是满足下列性质的一类函数：<br>$$<br>\begin{cases}<br>f(mn)=f(m)*f(n)\<br>\forall gcd(m,n)=1<br>\end{cases}<br>$$</p><h4 id="3-欧拉函数"><a href="#3-欧拉函数" class="headerlink" title="3.欧拉函数"></a>3.欧拉函数</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>欧拉函数$\varphi (n)$表示小于等于$n$的所有数之中和$n$互质的数的个数。</p><p>例如$\varphi (5)=4$。</p><p>欧拉函数是积性函数。<br>$$<br>\varphi (x)=x(1-\frac{1}{p_1})(1-\frac{1}{p_2})(1-\frac{1}{p_3})…(1-\frac{1}{p_n})<br>$$<br>其中$p$是$x$的所有质因数。</p><h5 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h5><p>$$<br>\sum_{d|n}\phi(d)=n<br>$$</p><p>即一个数的值等于其所有质因数的欧拉函数的和。</p><h5 id="区间预处理求欧拉函数"><a href="#区间预处理求欧拉函数" class="headerlink" title="区间预处理求欧拉函数"></a>区间预处理求欧拉函数</h5><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">for(int i&#x3D;1;i&lt;&#x3D;n;i++)phi[i]&#x3D;i;for(int i&#x3D;1;i&lt;&#x3D;n;i++)&#123;    if(phi[i]&#x3D;&#x3D;i)&#123;        for(int j&#x3D;1;i*j&lt;&#x3D;n;j++)&#123;            phi[i*j]&#x3D;phi[i*j]*(i*j-1)&#x2F;(i*j);        &#125;    &#125;&#125;</code></pre><h5 id="求一个数的欧拉函数值"><a href="#求一个数的欧拉函数值" class="headerlink" title="求一个数的欧拉函数值"></a>求一个数的欧拉函数值</h5><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">int res&#x3D;n;for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)&#123;    if(n%i&#x3D;&#x3D;0)&#123;        res&#x3D;res*(i-1)&#x2F;i;        while(n%i&#x3D;&#x3D;0)n&#x2F;&#x3D;i;    &#125;&#125;if(n&gt;1)&#123;    res&#x3D;res&#x2F;n*(n-1);&#125;</code></pre><h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><ul><li>给定一个整数$n$，有多少个数$i$满足：<br>$$<br>gcd(i,n)=1,\ 1\le i\le n<br>$$<br>其中$n\le 10^9$。</li></ul>]]></content>
     
