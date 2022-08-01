@@ -6,7 +6,7 @@
   <link href="https://tridiamond.tech/atom.xml" rel="self"/>
   
   <link href="https://tridiamond.tech/"/>
-  <updated>2022-05-16T10:55:07.554Z</updated>
+  <updated>2022-08-01T12:15:39.741Z</updated>
   <id>https://tridiamond.tech/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数论知识点整理</title>
+    <link href="https://tridiamond.tech/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.html"/>
+    <id>https://tridiamond.tech/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.html</id>
+    <published>2022-08-01T08:14:08.000Z</published>
+    <updated>2022-08-01T12:15:39.741Z</updated>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="一-初等数论"><a href="#一-初等数论" class="headerlink" title="一.初等数论"></a>一.初等数论</h2><h4 id="1-同余方程"><a href="#1-同余方程" class="headerlink" title="1.同余方程"></a>1.同余方程</h4><p>形如：<br>$$<br>a\equiv b(mod\ c)<br>$$<br>称之为a和b关于c的同余方程，即a和b分别除以c，余数相同。</p><h4 id="2-积性函数"><a href="#2-积性函数" class="headerlink" title="2.积性函数"></a>2.积性函数</h4><p>积性函数是满足下列性质的一类函数：<br>$$<br>\begin{cases}<br>f(mn)=f(m)*f(n)\<br>\forall gcd(m,n)=1<br>\end{cases}<br>$$</p><h4 id="3-欧拉函数"><a href="#3-欧拉函数" class="headerlink" title="3.欧拉函数"></a>3.欧拉函数</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>欧拉函数$\varphi (n)$表示小于等于$n$的所有数之中和$n$互质的数的个数。</p><p>例如$\varphi (5)=4$。</p><p>欧拉函数是积性函数。<br>$$<br>\varphi (x)=x(1-\frac{1}{p_1})(1-\frac{1}{p_2})(1-\frac{1}{p_3})…(1-\frac{1}{p_n})<br>$$<br>其中$p$是$x$的所有质因数。</p><h5 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h5><p>$$<br>\sum_{d|n}\phi(d)=n<br>$$</p><p>即一个数的值等于其所有质因数的欧拉函数的和。</p><h5 id="区间预处理求欧拉函数"><a href="#区间预处理求欧拉函数" class="headerlink" title="区间预处理求欧拉函数"></a>区间预处理求欧拉函数</h5><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">for(int i&#x3D;1;i&lt;&#x3D;n;i++)phi[i]&#x3D;i;for(int i&#x3D;1;i&lt;&#x3D;n;i++)&#123;    if(phi[i]&#x3D;&#x3D;i)&#123;        for(int j&#x3D;1;i*j&lt;&#x3D;n;j++)&#123;            phi[i*j]&#x3D;phi[i*j]*(i*j-1)&#x2F;(i*j);        &#125;    &#125;&#125;</code></pre><h5 id="求一个数的欧拉函数值"><a href="#求一个数的欧拉函数值" class="headerlink" title="求一个数的欧拉函数值"></a>求一个数的欧拉函数值</h5><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">int res&#x3D;n;for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)&#123;    if(n%i&#x3D;&#x3D;0)&#123;        res&#x3D;res*(i-1)&#x2F;i;        while(n%i&#x3D;&#x3D;0)n&#x2F;&#x3D;i;    &#125;&#125;if(n&gt;1)&#123;    res&#x3D;res&#x2F;n*(n-1);&#125;</code></pre><h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><ul><li>给定一个整数$n$，有多少个数$i$满足：<br>$$<br>gcd(i,n)=1,\ 1\le i\le n<br>$$<br>其中$n\le 10^9$。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;h2 id=&quot;一-初等数论&quot;&gt;&lt;a href=&quot;#一-初等数论&quot; class=&quot;headerlink&quot; title=&quot;一.初等数论&quot;&gt;&lt;/a&gt;一.初等数论&lt;/h2&gt;&lt;h4 id=&quot;1-同余方程&quot;&gt;&lt;a href=&quot;#1-同余方程</summary>
+      
+    
+    
+    
+    <category term="算法竞赛知识点" scheme="https://tridiamond.tech/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    
+    
+    <category term="数论" scheme="https://tridiamond.tech/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="数学" scheme="https://tridiamond.tech/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>白泽的C语言入门（七） 我可太懂函数了</title>
@@ -485,31 +513,6 @@
     <category term="HDU" scheme="https://tridiamond.tech/tags/HDU/"/>
     
     <category term="准备CCPC2021" scheme="https://tridiamond.tech/tags/%E5%87%86%E5%A4%87CCPC2021/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HDU5551-Huatuo&#39;s Medicine</title>
-    <link href="https://tridiamond.tech/post/HDU5551.html"/>
-    <id>https://tridiamond.tech/post/HDU5551.html</id>
-    <published>2021-08-14T13:57:39.000Z</published>
-    <updated>2021-08-15T07:40:03.432Z</updated>
-    
-    <content type="html"><![CDATA[<p>没啥好说的签到题，虽然依旧卡了我十来分钟。</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>华佗是一位著名的医生。他用同样的瓶子装药。药物有不同的种类。华佗把药装进瓶子里，并用链子把这些瓶子连在一起。</p><p>然而，有一个关键的问题。当华佗到达病人家时，他从包里拿出链子，他不知道哪个瓶子装的是哪一种药，但他记得链子上瓶子的顺序。</p><p>对于这个问题，华佗有自己的解决办法。当他需要带两种药时，例如A和B，他会把A放在一个瓶子里，把B放在两个瓶子里。然后他将按照’ - B - A - B - ‘的顺序把瓶子锁起来。这样，当他到达病人家时，他知道中间的瓶子是药A，两边的瓶子是药B。</p><p>现在你需要帮华佗算出他要带N种药最少需要多少瓶。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>最初没读懂题…在我的理解里面，当装三瓶药时序列应该是这样的：C-B-C-A-C-B-C，这样我就能保证每瓶药的两边都是一样的药了…</p><p>事实上只用让整串药是对称的就行了= =，直接输出2*n-1</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;bits&#x2F;stdc++.h&gt;#define int long longusing namespace std;inline int read() &#123;register char c &#x3D; getchar();register int f &#x3D; 1, _ &#x3D; 0;while (c &gt; &#39;9&#39; || c &lt; &#39;0&#39;)f &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? -1 : 1, c &#x3D; getchar();while (c &lt;&#x3D; &#39;9&#39; &amp;&amp; c &gt;&#x3D; &#39;0&#39;)_ &#x3D; (_ &lt;&lt; 3) + (_ &lt;&lt; 1) + (c ^ 48), c &#x3D; getchar();return _ * f;&#125;signed main() &#123;int t &#x3D; read();int flag &#x3D; 1;while (t--) &#123;cout &lt;&lt; &quot;Case #&quot; &lt;&lt; flag &lt;&lt; &quot;: &quot; &lt;&lt; read() &lt;&lt; endl;flag++;&#125;return 0;&#125;</code></pre>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;没啥好说的签到题，虽然依旧卡了我十来分钟。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="题解" scheme="https://tridiamond.tech/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="HDU" scheme="https://tridiamond.tech/tags/HDU/"/>
-    
-    <category term="准备CCPC2021" scheme="https://tridiamond.tech/tags/%E5%87%86%E5%A4%87CCPC2021/"/>
-    
-    <category term="签到题" scheme="https://tridiamond.tech/tags/%E7%AD%BE%E5%88%B0%E9%A2%98/"/>
     
   </entry>
   
