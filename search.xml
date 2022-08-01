@@ -483,9 +483,9 @@
       
         <tags>
             
-            <tag> 准备CCPC2021 </tag>
-            
             <tag> 搜索 </tag>
+            
+            <tag> 准备CCPC2021 </tag>
             
         </tags>
       
@@ -1091,11 +1091,11 @@
     
     
     <entry>
-      <title>计蒜客-找数字</title>
-      <link href="//post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%89%BE%E6%95%B0%E5%AD%97.html"/>
-      <url>//post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%89%BE%E6%95%B0%E5%AD%97.html</url>
+      <title>计蒜客-方程的解数</title>
+      <link href="//post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%E6%95%B0.html"/>
+      <url>//post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%E6%95%B0.html</url>
       
-        <content type="html"><![CDATA[<p>补充练习</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给一个数 <em>n</em>，让你找出一个只由 0,1 组成的十进制数 <em>m</em>，要求这个正整数 <em>m</em> 可以被 <em>n</em> 整除。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>搜索裸题，设置上界，每次在末尾添加一个0或1，直到满足题意为止。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;bits&#x2F;stdc++.h&gt;#define int long longusing namespace std;int read() &#123;char c &#x3D; getchar();int f &#x3D; 1, _ &#x3D; 0;while (c &gt; &#39;9&#39; || c &lt; &#39;0&#39;)f &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? -1 : 1, c &#x3D; getchar();while (c &lt;&#x3D; &#39;9&#39; &amp;&amp; c &gt;&#x3D; &#39;0&#39;)_ &#x3D; (_ &lt;&lt; 3) + (_ &lt;&lt; 1) + (c ^ 48), c &#x3D; getchar();return _ * f;&#125;int n, ans;int dfs(int now) &#123;&#x2F;&#x2F;cout &lt;&lt; &quot;now:&quot; &lt;&lt; now &lt;&lt; endl;if (now &gt; 100000000000)return 0;if (now % n &#x3D;&#x3D; 0 &amp;&amp; now !&#x3D; 0) &#123;ans &#x3D; now;return 1;&#125; else if (now * 10 &lt; 1e19) &#123;if (dfs(now * 10 + 1))return 1;if (dfs(now * 10))return 1;&#125;return 0;&#125;signed main() &#123;n &#x3D; read();dfs(0);cout &lt;&lt; ans &lt;&lt; endl;return 0;&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>带一定限制条件的搜索~</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>蒜头君在求解一个 <em>n</em> 元的高次方程：<br>$$<br>k_1x_1^{p_1}+k_2x_2^{p_2}+…+k_nx_n^{p_n}=0<br>$$<br>其中：$x_1,x_2,\ldots,x_n$ 是未知数，$k_1,k_2,\ldots,k_n $是系数，$p_1,p_2,\ldots,p_n 是$指数。方程中所有数都一定是整数。</p><p>假设未知数 $1\leq x_i\leq M,i=1 \ldots n$​。你能帮蒜头君算出这个方程的整数解个数吗？</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>同样是搜索，枚举每个数字可能的值，直到达到数的上界为止。</p><p>当然也可以写成for循环嵌套的形式=W=。</p><p>这种题不知道题解要写些什么…思路这些都是顺着就来了…</p><p>所以就这样了！</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;bits&#x2F;stdc++.h&gt;#define int long long#define maxn 10using namespace std;int read() &#123;char c &#x3D; getchar();int f &#x3D; 1, _ &#x3D; 0;while (c &gt; &#39;9&#39; || c &lt; &#39;0&#39;)f &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? -1 : 1, c &#x3D; getchar();while (c &lt;&#x3D; &#39;9&#39; &amp;&amp; c &gt;&#x3D; &#39;0&#39;)_ &#x3D; (_ &lt;&lt; 3) + (_ &lt;&lt; 1) + (c ^ 48), c &#x3D; getchar();return _ * f;&#125;int ksm(int a, int n) &#123;int res &#x3D; 1;while (n) &#123;if (n &amp; 1) &#123;res &#x3D; res * a;&#125;n &gt;&gt;&#x3D; 1;a &#x3D; a * a;&#125;return res;&#125;int n, M;int k[maxn], p[maxn], X[maxn];int maxNum[maxn];int ans;void dfs(int x) &#123;int temp &#x3D; 0;for (register int i &#x3D; 0; i &lt; n; i++) &#123;temp +&#x3D; k[i] * ksm(X[i], p[i]);if (X[i] &gt; M)return;&#125;&#x2F;&#x2F;cout &lt;&lt; X[0] &lt;&lt; &quot; &quot; &lt;&lt; X[1] &lt;&lt; &quot; &quot; &lt;&lt; X[2] &lt;&lt; &quot; &quot; &lt;&lt; endl;if (temp &#x3D;&#x3D; 0) &#123;ans++;&#125;for (register int i &#x3D; x; i &lt; n; i++) &#123;X[i]++;dfs(i);X[i]--;&#125;&#125;signed main(void) &#123;n &#x3D; read();M &#x3D; read();for (register int i &#x3D; 0; i &lt; n; i++)k[i] &#x3D; read(), p[i] &#x3D; read(), X[i] &#x3D; 1;dfs(0);cout &lt;&lt; ans &lt;&lt; endl;return 0;&#125;</code></pre>]]></content>
       
       
       <categories>
@@ -1120,11 +1120,11 @@
     
     
     <entry>
-      <title>计蒜客-方程的解数</title>
-      <link href="//post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%E6%95%B0.html"/>
-      <url>//post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%E6%95%B0.html</url>
+      <title>计蒜客-找数字</title>
+      <link href="//post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%89%BE%E6%95%B0%E5%AD%97.html"/>
+      <url>//post/%E8%AE%A1%E8%92%9C%E5%AE%A2-%E6%89%BE%E6%95%B0%E5%AD%97.html</url>
       
-        <content type="html"><![CDATA[<p>带一定限制条件的搜索~</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>蒜头君在求解一个 <em>n</em> 元的高次方程：<br>$$<br>k_1x_1^{p_1}+k_2x_2^{p_2}+…+k_nx_n^{p_n}=0<br>$$<br>其中：$x_1,x_2,\ldots,x_n$ 是未知数，$k_1,k_2,\ldots,k_n $是系数，$p_1,p_2,\ldots,p_n 是$指数。方程中所有数都一定是整数。</p><p>假设未知数 $1\leq x_i\leq M,i=1 \ldots n$​。你能帮蒜头君算出这个方程的整数解个数吗？</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>同样是搜索，枚举每个数字可能的值，直到达到数的上界为止。</p><p>当然也可以写成for循环嵌套的形式=W=。</p><p>这种题不知道题解要写些什么…思路这些都是顺着就来了…</p><p>所以就这样了！</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;bits&#x2F;stdc++.h&gt;#define int long long#define maxn 10using namespace std;int read() &#123;char c &#x3D; getchar();int f &#x3D; 1, _ &#x3D; 0;while (c &gt; &#39;9&#39; || c &lt; &#39;0&#39;)f &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? -1 : 1, c &#x3D; getchar();while (c &lt;&#x3D; &#39;9&#39; &amp;&amp; c &gt;&#x3D; &#39;0&#39;)_ &#x3D; (_ &lt;&lt; 3) + (_ &lt;&lt; 1) + (c ^ 48), c &#x3D; getchar();return _ * f;&#125;int ksm(int a, int n) &#123;int res &#x3D; 1;while (n) &#123;if (n &amp; 1) &#123;res &#x3D; res * a;&#125;n &gt;&gt;&#x3D; 1;a &#x3D; a * a;&#125;return res;&#125;int n, M;int k[maxn], p[maxn], X[maxn];int maxNum[maxn];int ans;void dfs(int x) &#123;int temp &#x3D; 0;for (register int i &#x3D; 0; i &lt; n; i++) &#123;temp +&#x3D; k[i] * ksm(X[i], p[i]);if (X[i] &gt; M)return;&#125;&#x2F;&#x2F;cout &lt;&lt; X[0] &lt;&lt; &quot; &quot; &lt;&lt; X[1] &lt;&lt; &quot; &quot; &lt;&lt; X[2] &lt;&lt; &quot; &quot; &lt;&lt; endl;if (temp &#x3D;&#x3D; 0) &#123;ans++;&#125;for (register int i &#x3D; x; i &lt; n; i++) &#123;X[i]++;dfs(i);X[i]--;&#125;&#125;signed main(void) &#123;n &#x3D; read();M &#x3D; read();for (register int i &#x3D; 0; i &lt; n; i++)k[i] &#x3D; read(), p[i] &#x3D; read(), X[i] &#x3D; 1;dfs(0);cout &lt;&lt; ans &lt;&lt; endl;return 0;&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>补充练习</p><span id="more"></span><h3 id="题意概括"><a href="#题意概括" class="headerlink" title="题意概括"></a>题意概括</h3><p>给一个数 <em>n</em>，让你找出一个只由 0,1 组成的十进制数 <em>m</em>，要求这个正整数 <em>m</em> 可以被 <em>n</em> 整除。</p><h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>搜索裸题，设置上界，每次在末尾添加一个0或1，直到满足题意为止。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;bits&#x2F;stdc++.h&gt;#define int long longusing namespace std;int read() &#123;char c &#x3D; getchar();int f &#x3D; 1, _ &#x3D; 0;while (c &gt; &#39;9&#39; || c &lt; &#39;0&#39;)f &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? -1 : 1, c &#x3D; getchar();while (c &lt;&#x3D; &#39;9&#39; &amp;&amp; c &gt;&#x3D; &#39;0&#39;)_ &#x3D; (_ &lt;&lt; 3) + (_ &lt;&lt; 1) + (c ^ 48), c &#x3D; getchar();return _ * f;&#125;int n, ans;int dfs(int now) &#123;&#x2F;&#x2F;cout &lt;&lt; &quot;now:&quot; &lt;&lt; now &lt;&lt; endl;if (now &gt; 100000000000)return 0;if (now % n &#x3D;&#x3D; 0 &amp;&amp; now !&#x3D; 0) &#123;ans &#x3D; now;return 1;&#125; else if (now * 10 &lt; 1e19) &#123;if (dfs(now * 10 + 1))return 1;if (dfs(now * 10))return 1;&#125;return 0;&#125;signed main() &#123;n &#x3D; read();dfs(0);cout &lt;&lt; ans &lt;&lt; endl;return 0;&#125;</code></pre>]]></content>
       
       
       <categories>
